@@ -27,14 +27,29 @@ two:
   created_at: <%= 3.years.ago %>
 
 most_recent:
-  coordinate: MyStringRecent
-  country: MyStringRecent
-  province: MyStringRecent
-  city: MyStringRecent
+  coordinate: IntegrationTest
+  country: IntegrationTest
+  province: IntegrationTest
+  city: IntegrationTest
   address: MyTextRecent
-  name: MyStringRecent
+  name: IntegrationTest
   year: 1
   link: 
-  author: MyStringRecent
+  author: IntegrationTest
   user: one
   created_at: <%= Time.zone.now + 10 %>
+
+<% 30.times do |n| %>
+integration_post_<%= n %>:
+  created_at: <%= 42.days.ago %>
+  user: michael
+  coordinate: IntegrationTest
+  country: IntegrationTest
+  province: IntegrationTest
+  city: IntegrationTest
+  address: IntegrationTest
+  name: IntegrationTest
+  year: 1
+  link: 
+  author: IntegrationTest
+<% end %>

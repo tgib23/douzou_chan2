@@ -5,12 +5,14 @@
 # below each fixture, per the syntax in the comments below
 #
 one: 
+  uid: 101
   email: test1@test.com
 # column: value
 #
 two:
+  uid: 102
   email: test2@test.com
 # column: value
 michael:
-  uid: 22
+  uid: 103
   email: michael@test.com
