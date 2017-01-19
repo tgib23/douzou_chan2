@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coordinate: MyStringOne
+  country: MyStringOne
+  province: MyStringOne
+  city: MyStringOne
+  address: MyTextOne
+  name: MyStringOne
+  year: 1
+  link: 
+  author: MyStringOne
+  user: one
+  created_at: <%= 10.minutes.ago %>
+
+two:
+  coordinate: MyStringTwo
+  country: MyStringTwo
+  province: MyStringTwo
+  city: MyStringTwo
+  address: MyTextTwo
+  name: MyStringTwo
+  year: 1
+  link: 
+  author: MyStringTwo
+  user: two
+  created_at: <%= 3.years.ago %>
+
+most_recent:
+  coordinate: IntegrationTest
+  country: IntegrationTest
+  province: IntegrationTest
+  city: IntegrationTest
+  address: MyTextRecent
+  name: IntegrationTest
+  year: 1
+  link: 
+  author: IntegrationTest
+  user: one
+  created_at: <%= Time.zone.now + 10 %>
+
+<% 30.times do |n| %>
+integration_post_<%= n %>:
+  created_at: <%= 42.days.ago %>
+  user: michael
+  coordinate: IntegrationTest
+  country: IntegrationTest
+  province: IntegrationTest
+  city: IntegrationTest
+  address: IntegrationTest
+  name: IntegrationTest
+  year: 1
+  link: 
+  author: IntegrationTest
+<% end %>

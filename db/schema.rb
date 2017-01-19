@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109080627) do
+ActiveRecord::Schema.define(version: 20170109133820) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "coordinate"
+    t.string   "country"
+    t.string   "province"
+    t.string   "city"
+    t.text     "address"
+    t.string   "name"
+    t.integer  "year"
+    t.text     "link"
+    t.string   "author"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city", "author"], name: "index_posts_on_city_and_author"
+    t.index ["country", "province"], name: "index_posts_on_country_and_province"
+    t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -52,6 +52,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# for rails tutorial
+gem 'will_paginate'
+gem 'rails-controller-testing'
+
 # for douzou_chan2
 gem 'devise'
 gem 'omniauth'
