@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+#    debugger
     @posts = @user.posts.paginate(page: params[:page])
     @post = current_user.posts.build
   end
