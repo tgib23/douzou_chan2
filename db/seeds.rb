@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create!(email: "example@railstutorial.org",
+             provider: "douzou-chan",
+             uid: "0",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             admin: true)
+
 99.times do |n|
   email = "douzou-chan-#{n+1}@test.org"
   provider = n%2 == 0 ? "facebook" : "twitter"

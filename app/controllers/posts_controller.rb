@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 puts "now in create #{current_user.uid}"
     if @post.save
-      flash[:success] = "Post created!"
+      flash[:success] = "Post created by #{current_user.uid}"
       redirect_to root_url
     else
       render 'welcome/home'

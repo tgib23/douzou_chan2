@@ -1,4 +1,5 @@
-<% if @user %>
+<% provide(:title, @user.uid) %>
+<%# if @user %>
   <div class="col-md-8">
     <% if @user.posts.any? %>
       <h3>Posts (<%= @user.posts.count %>)</h3>
@@ -12,6 +13,10 @@
   <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.uid %>
+        </h1>
         <%= render 'shared/user_info' %>
       </section>
       <section class="post_form">
@@ -19,4 +24,4 @@
       </section>
     </aside>
   </div>
-<% end %>
+<%# end %>

@@ -16,3 +16,4 @@ two:
 michael:
   uid: 103
   email: michael@test.com
+  admin: true
