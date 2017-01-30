@@ -20,7 +20,9 @@
         <%= render 'shared/user_info' %>
       </section>
       <section class="post_form">
+        <% if user_signed_in? %>
         <%= render 'shared/post_form' %>
+        <% end %>
       </section>
     </aside>
   </div>

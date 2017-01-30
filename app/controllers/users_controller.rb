@@ -3,9 +3,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-#    debugger
     @posts = @user.posts.paginate(page: params[:page])
-    @post = current_user.posts.build
+
+    # temporal debug
+    if user_signed_in?
+      @post = current_user.posts.build
+    end
   end
 
   def edit
