@@ -1,0 +1,2 @@
+$('#post_content').val("<%= @lat + "," + @lon %>");
+$('#coordinate').html("<%= Geocoder.address(@lat + "," + @lon) %>");

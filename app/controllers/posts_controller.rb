@@ -1,5 +1,12 @@
 class PostsController < ApplicationController
 
+  def new
+    if user_signed_in?
+      @post = current_user.posts.build
+      @user = current_user
+    end
+  end
+
   def create
     @post = current_user.posts.build(post_params)
 puts "now in create #{current_user.uid}"
@@ -12,6 +19,16 @@ puts "now in create #{current_user.uid}"
   end
 
   def destroy
+  end
+
+  def get_geo
+    logger.debug params[:lat]
+    logger.debug params[:lon]
+    @lat=params[:lat]
+    @lon=params[:lon]
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
