@@ -10,23 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121024105) do
+ActiveRecord::Schema.define(version: 20170204070323) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "coordinate"
     t.string   "country"
-    t.string   "province"
-    t.string   "city"
     t.text     "address"
     t.string   "name"
     t.integer  "year"
     t.text     "link"
     t.string   "author"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city", "author"], name: "index_posts_on_city_and_author"
-    t.index ["country", "province"], name: "index_posts_on_country_and_province"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "administrative_area_level_1"
+    t.string   "locality"
+    t.string   "ward"
+    t.string   "sublocality_level_1"
+    t.string   "sublocality_level_2"
+    t.string   "sublocality_level_3"
+    t.string   "sublocality_level_4"
+    t.string   "sublocality_level_5"
+    t.index ["author"], name: "index_posts_on_city_and_author"
+    t.index ["country"], name: "index_posts_on_country_and_province"
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
