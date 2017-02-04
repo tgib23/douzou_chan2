@@ -1,2 +1,12 @@
-$('#post_content').val("<%= @lat + "," + @lon %>");
-$('#coordinate').html("<%= Geocoder.address(@lat + "," + @lon) %>");
+$('#post_coordinate').val("<%= @coordinate %>");
+$('#post_country').val("<%= @country %>");
+$('#post_administrative_area_level_1').val("<%= @administrative_area_level_1 %>");
+$('#post_locality').val("<%= @locality %>");
+$('#post_ward').val("<%= @ward %>");
+$('#post_sublocality_level_1').val("<%= @sublocality_level_1 %>");
+$('#post_sublocality_level_2').val("<%= @sublocality_level_2 %>");
+$('#post_sublocality_level_3').val("<%= @sublocality_level_3 %>");
+$('#post_sublocality_level_4').val("<%= @sublocality_level_4 %>");
+$('#post_sublocality_level_5').val("<%= @sublocality_level_5 %>");
+$('#post_address').val("<%= @address %>");
+$('#coordinate').html("<%= @address %>");
