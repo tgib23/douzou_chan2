@@ -6,9 +6,14 @@ class PostTest < ActiveSupport::TestCase
     # This code is not idiomatically correct.
     @post = @user.posts.create(coordinate: "35.7324356,139.6578569",
                      country: "日本",
-					 province: "神奈川県",
-					 city: "横浜市緑区",
-					 address: "日本 神奈川県横浜市緑区青葉台1-1-1",
+					 administrative_area_level_1: "神奈川県",
+					 locality: "横浜市",
+					 ward: "青葉区",
+					 sublocality_level_1: "青葉台",
+					 sublocality_level_2: "2",
+					 sublocality_level_4: "3",
+					 sublocality_level_5: "17",
+					 address: "日本 神奈川県横浜市緑区青葉区青葉台2-3-17",
 					 author: "運慶",
 					 name: "金剛力士像",
 					 year: "1400",
@@ -31,7 +36,7 @@ class PostTest < ActiveSupport::TestCase
 	@post = @post_default
   end
 
-  test "coordinate, country, province, city, address should be present" do
+  test "coordinate, country, administrative_area_level_1, address should be present" do
     @post.coordinate = nil
     assert_not @post.valid?
     @post = @post_default
@@ -40,11 +45,7 @@ class PostTest < ActiveSupport::TestCase
     assert_not @post.valid?
     @post = @post_default
 
-    @post.province= nil
-    assert_not @post.valid?
-    @post = @post_default
-
-    @post.city = nil
+    @post.administrative_area_level_1= nil
     assert_not @post.valid?
     @post = @post_default
 
