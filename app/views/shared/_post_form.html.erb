@@ -1,11 +1,17 @@
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :coordinate, placeholder: "Compose new post..." %>
-    <%= f.text_area :country,    placeholder: "日本" %>
-    <%= f.text_area :province,   placeholder: "東京都" %>
-    <%= f.text_area :city,       placeholder: "世田谷区" %>
-    <%= f.text_area :address,    placeholder: "日本 東京都世田谷区" %>
+    <%= f.hidden_field :coordinate %>
+    <%= f.hidden_field :country %>
+    <%= f.hidden_field :administrative_area_level_1 %>
+    <%= f.hidden_field :address %>
+    <%= f.hidden_field :locality %>
+    <%= f.hidden_field :ward %>
+    <%= f.hidden_field :sublocality_level_1 %>
+    <%= f.hidden_field :sublocality_level_2 %>
+    <%= f.hidden_field :sublocality_level_3 %>
+    <%= f.hidden_field :sublocality_level_4 %>
+    <%= f.hidden_field :sublocality_level_5 %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
