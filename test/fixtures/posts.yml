@@ -3,8 +3,9 @@
 one:
   coordinate: MyStringOne
   country: MyStringOne
-  province: MyStringOne
-  city: MyStringOne
+  administrative_area_level_1: MyStringOne
+  locality: MyStringOne
+  sublocality_level_1: MyStringOne
   address: MyTextOne
   name: MyStringOne
   year: 1
@@ -16,8 +17,10 @@ one:
 two:
   coordinate: MyStringTwo
   country: MyStringTwo
-  province: MyStringTwo
-  city: MyStringTwo
+  administrative_area_level_1: MyStringTwo
+  locality: MyStringTwo
+  ward: MyStringTwo
+  sublocality_level_5: MyStringOne
   address: MyTextTwo
   name: MyStringTwo
   year: 1
@@ -29,8 +32,8 @@ two:
 most_recent:
   coordinate: IntegrationTest
   country: IntegrationTest
-  province: IntegrationTest
-  city: IntegrationTest
+  administrative_area_level_1: IntegrationTest
+  locality: IntegrationTest
   address: MyTextRecent
   name: IntegrationTest
   year: 1
@@ -45,8 +48,8 @@ integration_post_<%= n %>:
   user: michael
   coordinate: IntegrationTest
   country: IntegrationTest
-  province: IntegrationTest
-  city: IntegrationTest
+  administrative_area_level_1: IntegrationTest
+  locality: IntegrationTest
   address: IntegrationTest
   name: IntegrationTest
   year: 1

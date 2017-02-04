@@ -4,7 +4,6 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :coordinate, presence: true
   validates :country, presence: true
-  validates :province, presence: true
-  validates :city, presence: true
+  validates :administrative_area_level_1, presence: true
   validates :address, presence: true
 end
