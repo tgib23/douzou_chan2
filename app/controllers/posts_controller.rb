@@ -3,14 +3,23 @@ class PostsController < ApplicationController
   def new
     if user_signed_in?
       @post = current_user.posts.build
+      @pic = @post.pics.build
       @user = current_user
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    @pics = @post.pics.all
   end
 
   def create
     @post = current_user.posts.build(post_params)
 puts "now in create #{current_user.uid}"
     if @post.save
+      params[:pics]['avatar'].each do |a|
+        @pic = @post.pics.create!(:avatar => a)
+      end
       flash[:success] = "Post created by #{current_user.uid}"
       redirect_to root_url
     else
@@ -79,7 +88,8 @@ puts "now in create #{current_user.uid}"
                                    :administrative_area_level_1, :address,
                                    :locality, :ward, :sublocality_level_1, :sublocality_level_2,
                                    :sublocality_level_3, :sublocality_level_4, :sublocality_level_5,
-                                   :year, :link, :author, :user_id)
+                                   :year, :link, :author, :user_id,
+                                   pics: [:id, :post_id, :avatar])
     end
 
     def extract_long_name (r)

@@ -63,3 +63,5 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'omniauth-twitter'
 gem 'geocoder'
+gem 'carrierwave'
+
