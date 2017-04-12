@@ -14,7 +14,7 @@
   <tbody>
     <% @pics.each do |pic| %>
       <tr>
-        <td><%= pic.pic_id %></td>
+        <td><%= pic.post_id %></td>
         <td><%= pic.avatar %></td>
         <td><%= link_to 'Show', pic %></td>
         <td><%= link_to 'Edit', edit_pic_path(pic) %></td>

@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  pic_id: 1
+  post_id: 1
   avatar: MyString
 
 two:
-  pic_id: 1
+  post_id: 1
   avatar: MyString
