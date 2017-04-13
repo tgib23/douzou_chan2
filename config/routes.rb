@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :users, only: [ :show, :edit ]
   resources :posts, only: [ :create, :destroy, :new ]
   get "posts/get_geo"
+  get "posts/:id", to: 'posts#show'
 end

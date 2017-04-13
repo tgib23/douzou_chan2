@@ -76,6 +76,7 @@ puts "now in create #{current_user.uid}"
    )
 
   @address = geo_info.map{|ad| ad['long_name']}[1..-1].reverse.join(' ')
+
     respond_to do |format|
       format.js
     end
