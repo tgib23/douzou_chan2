@@ -8,3 +8,7 @@ re-start douzou_chan project again with
 * omniauth
 * devise
 * google map
+
+## CI
+
+* [Circle CI](https://circleci.com/gh/tgib23/douzou_chan2)

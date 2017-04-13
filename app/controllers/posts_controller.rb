@@ -14,16 +14,24 @@ class PostsController < ApplicationController
   end
 
   def create
+    if user_signed_in?
+      @user = current_user
+    end
     @post = current_user.posts.build(post_params)
-puts "now in create #{current_user.uid}"
-    if @post.save
-      params[:pics]['avatar'].each do |a|
-        @pic = @post.pics.create!(:avatar => a)
+    puts "now in create #{current_user.uid}"
+
+	respond_to do |format|
+      if !params[:pics].nil? && @post.save
+        params[:pics]['avatar'].each do |a|
+          @pic = @post.pics.create!(:avatar => a)
+        end
+        flash[:success] = "Post created by #{current_user.uid}"
+        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post.id }
+      else
+        format.html { render :new, notice: 'Post was not created' }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
-      flash[:success] = "Post created by #{current_user.uid}"
-      redirect_to root_url
-    else
-      render 'welcome/home'
     end
   end
 
