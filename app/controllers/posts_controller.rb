@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     puts "now in create #{current_user.uid}"
 
 	respond_to do |format|
-      if !params[:pics].nil? && @post.save
+      if @post.save
         params[:pics]['avatar'].each do |a|
           @pic = @post.pics.create!(:avatar => a)
         end

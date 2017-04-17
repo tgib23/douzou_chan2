@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   validates :country, presence: true
   validates :administrative_area_level_1, presence: true
   validates :address, presence: true
+
+  validates :pics, presence: true, length: { minimum: 1}
   has_many :pics
   accepts_nested_attributes_for :pics
 end

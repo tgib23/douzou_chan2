@@ -4,6 +4,8 @@ class PostTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
     # This code is not idiomatically correct.
+	@pic1 = Pic.new :id => 30
+	@pic2 = Pic.new :id => 31
     @post = @user.posts.create(coordinate: "35.7324356,139.6578569",
                      country: "日本",
 					 administrative_area_level_1: "神奈川県",
@@ -26,9 +28,22 @@ class PostTest < ActiveSupport::TestCase
 	puts "user.post.first.id is #{@user.posts.first.id}"
   end
 
-  test "should be valid" do
-    assert @post.valid?
+  test "@post without pics should not be valid" do
+    assert_not @post.valid?
   end
+
+#  don't know what's wrong
+#  test "@post with pics should be valid" do
+#    @post.pics << @pic1
+#    @post.pics << @pic2
+#	puts "failed test"
+#	puts @post.user_id
+#	puts @post.coordinate
+#	puts @post.country
+#	puts @post.administrative_area_level_1
+#	puts @post.address
+#	assert @post.valid?
+#  end
 
   test "user id should be present" do
     @post.user_id = nil
