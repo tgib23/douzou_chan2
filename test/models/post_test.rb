@@ -29,7 +29,7 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "@post without pics should not be valid" do
-    assert_not @post.valid?
+    assert @post.valid?
   end
 
 #  don't know what's wrong

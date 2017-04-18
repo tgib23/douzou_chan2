@@ -20,8 +20,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     puts "now in create #{current_user.uid}"
 
-	respond_to do |format|
-      if @post.save
+    respond_to do |format|
+      if !params[:pics].nil? && @post.save
         params[:pics]['avatar'].each do |a|
           @pic = @post.pics.create!(:avatar => a)
         end
@@ -29,7 +29,8 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post.id }
       else
-        format.html { render :new, notice: 'Post was not created' }
+        flash[:error] = "Post was not created"
+        format.html { redirect_to :action => "new", notice: 'Post was not created' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
