@@ -1,6 +1,8 @@
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
+    <%= f.text_field :name %>
+    <%= f.text_field :author %>
     <%= f.hidden_field :coordinate %>
     <%= f.hidden_field :country %>
     <%= f.hidden_field :administrative_area_level_1 %>
