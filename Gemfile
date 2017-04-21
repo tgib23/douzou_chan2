@@ -64,4 +64,7 @@ gem 'dotenv-rails'
 gem 'omniauth-twitter'
 gem 'geocoder'
 gem 'carrierwave'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+
 

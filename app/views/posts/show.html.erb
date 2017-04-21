@@ -5,10 +5,18 @@
   <%= @post.name %>
 </p>
 
+<p>
+  <strong>Address:</strong>
+  <%= @post.address %>
+</p>
 <% @pics.each do |p| %>
   <%= image_tag p.avatar_url %>
   <%= link_to "Edit Attachment", edit_pic_path(p) %>
 <% end %>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
 
 <%#= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
