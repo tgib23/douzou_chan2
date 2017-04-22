@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  coordinate: MyStringOne
+  latitude: 35.7681156
+  longitude: 139.8310782
   country: MyStringOne
   administrative_area_level_1: MyStringOne
   locality: MyStringOne
@@ -15,7 +16,8 @@ one:
   created_at: <%= 10.minutes.ago %>
 
 two:
-  coordinate: MyStringTwo
+  latitude: 36.7681156
+  longitude: 140.8310782
   country: MyStringTwo
   administrative_area_level_1: MyStringTwo
   locality: MyStringTwo
@@ -30,7 +32,8 @@ two:
   created_at: <%= 3.years.ago %>
 
 most_recent:
-  coordinate: IntegrationTest
+  latitude: 37.7681156
+  longitude: 141.8310782
   country: IntegrationTest
   administrative_area_level_1: IntegrationTest
   locality: IntegrationTest
@@ -46,7 +49,8 @@ most_recent:
 integration_post_<%= n %>:
   created_at: <%= 42.days.ago %>
   user: michael
-  coordinate: IntegrationTest
+  latitude: 37.7681156
+  longitude: 141.8310782
   country: IntegrationTest
   administrative_area_level_1: IntegrationTest
   locality: IntegrationTest

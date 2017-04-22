@@ -42,10 +42,10 @@ class PostsController < ApplicationController
   def get_geo
     logger.debug params[:lat]
     logger.debug params[:lon]
-    @lat=params[:lat]
-    @lon=params[:lon]
-    @coordinate = @lat + "," + @lon
-    geo_info = Geocoder.search(@coordinate)[0].address_components
+    @latitude=params[:lat]
+    @longitude=params[:lon]
+    coordinate = @latitude + "," + @longitude
+    geo_info = Geocoder.search(coordinate)[0].address_components
     @country = geo_info.select{|e| e['types'] == ["country", "political"]}[0]["long_name"]
     @administrative_area_level_1 = geo_info.select{|e| e['types'] == ["administrative_area_level_1", "political"]}[0]["long_name"]
     @locality = extract_long_name(
@@ -94,7 +94,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:name, :coordinate, :country,
+      params.require(:post).permit(:name, :latitude, :longitude, :country,
                                    :administrative_area_level_1, :address,
                                    :locality, :ward, :sublocality_level_1, :sublocality_level_2,
                                    :sublocality_level_3, :sublocality_level_4, :sublocality_level_5,
