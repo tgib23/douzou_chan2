@@ -6,7 +6,8 @@ class PostTest < ActiveSupport::TestCase
     # This code is not idiomatically correct.
 	@pic1 = Pic.new :id => 30
 	@pic2 = Pic.new :id => 31
-    @post = @user.posts.create(coordinate: "35.7324356,139.6578569",
+    @post = @user.posts.create(latitude: "35.7324356",
+                     longitude: "139.6578569",
                      country: "日本",
 					 administrative_area_level_1: "神奈川県",
 					 locality: "横浜市",
@@ -51,8 +52,12 @@ class PostTest < ActiveSupport::TestCase
 	@post = @post_default
   end
 
-  test "coordinate, country, administrative_area_level_1, address should be present" do
-    @post.coordinate = nil
+  test "longitude, latitude, country, administrative_area_level_1, address should be present" do
+    @post.longitude = nil
+    assert_not @post.valid?
+    @post = @post_default
+
+    @post.latitude = nil
     assert_not @post.valid?
     @post = @post_default
 
