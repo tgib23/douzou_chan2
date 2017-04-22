@@ -5,10 +5,27 @@
   <%= @post.name %>
 </p>
 
+<p>
+  <strong>Address:</strong>
+  <%= @post.address %>
+</p>
 <% @pics.each do |p| %>
   <%= image_tag p.avatar_url %>
   <%= link_to "Edit Attachment", edit_pic_path(p) %>
 <% end %>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+</script>
 
 <%#= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

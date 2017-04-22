@@ -11,6 +11,12 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @pics = @post.pics.all
+    @hash = Gmaps4rails.build_markers(@post) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.name
+      marker.json({title: post.name})
+    end
   end
 
   def create
