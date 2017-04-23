@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421154349) do
+ActiveRecord::Schema.define(version: 20170423130906) do
 
   create_table "pics", force: :cascade do |t|
     t.integer  "post_id"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20170421154349) do
     t.string   "sublocality_level_3"
     t.string   "sublocality_level_4"
     t.string   "sublocality_level_5"
-    t.string   "latitude"
-    t.string   "longitude"
+    t.float    "latitude",                    null: false
+    t.float    "longitude",                   null: false
     t.index ["author"], name: "index_posts_on_city_and_author"
     t.index ["country"], name: "index_posts_on_country_and_province"
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
