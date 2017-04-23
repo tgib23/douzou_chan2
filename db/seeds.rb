@@ -6,14 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(email: "example@railstutorial.org",
+User.create!(email: "anonymous-user@railstutorial.org",
              provider: "douzou-chan",
-             uid: "0",
+             uid: "1",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin: true)
+             admin: false)
 
-99.times do |n|
+for n in 2..100
   email = "douzou-chan-#{n+1}@test.org"
   provider = n%2 == 0 ? "facebook" : "twitter"
   uid = n
@@ -28,17 +28,18 @@ end
 users = User.order(:created_at).take(6)
 50.times do |n|
   country = n % 2 == 0 ? "日本" : "US"
-  province = n % 2 == 0 ? "鹿児島県" : "CA"
-  city = n % 2 == 0 ? "指宿市" : "Los Angeles"
+  administrative_area_level_1 = n % 2 == 0 ? "鹿児島県" : "CA"
+  ward = n % 2 == 0 ? "指宿市" : "Los Angeles"
   address = n % 2 == 0 ? "日本 鹿児島県指宿市指宿1-1-1" : "Santa Monica, Los Angeles, CA, US"
   author = n % 2 == 0 ? "運慶" : "Michaelangelo"
   name = n % 2 == 0 ? "金剛力士像" : "Davide"
   year = 1500
   link = "http://www.yahoo.co.jp"
-  users.each { |user| user.posts.create!(coordinate: "35.#{n}#{n}#{n},139.#{n}#{n}#{n}55",
-                                         country: country,
-                                         province: province,
-                                         city: city,
+  users.each { |user| user.posts.create!(latitude: "35.68#{n}#{n}".to_f,
+                                         longitude: "139.69#{n}#{n}55".to_f,
+										 country: country,
+										 administrative_area_level_1: administrative_area_level_1,
+										 ward: ward,
                                          address: address,
                                          author: author,
                                          name: name,

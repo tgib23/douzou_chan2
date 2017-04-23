@@ -6,7 +6,7 @@ class PostsController < ApplicationController
       @pic = @post.pics.build
       @user = current_user
     else
-      @user = User.find_by( id: 1)
+      @user = User.find_by( uid: 1)
       @post = @user.posts.build
       @pic = @post.pics.build
     end
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if user_signed_in?
       @user = current_user
     else
-      @user = User.find_by( id: 1)
+      @user = User.find_by( uid: 1)
     end
     @post = @user.posts.build(post_params)
     puts "now in create #{@user.uid}"
