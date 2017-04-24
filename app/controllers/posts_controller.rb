@@ -5,6 +5,10 @@ class PostsController < ApplicationController
       @post = current_user.posts.build
       @pic = @post.pics.build
       @user = current_user
+    else
+      @user = User.find_by( uid: 1)
+      @post = @user.posts.build
+      @pic = @post.pics.build
     end
   end
 
@@ -22,16 +26,18 @@ class PostsController < ApplicationController
   def create
     if user_signed_in?
       @user = current_user
+    else
+      @user = User.find_by( uid: 1)
     end
-    @post = current_user.posts.build(post_params)
-    puts "now in create #{current_user.uid}"
+    @post = @user.posts.build(post_params)
+    puts "now in create #{@user.uid}"
 
     respond_to do |format|
       if !params[:pics].nil? && @post.save
         params[:pics]['avatar'].each do |a|
           @pic = @post.pics.create!(:avatar => a)
         end
-        flash[:success] = "Post created by #{current_user.uid}"
+        flash[:success] = "Post created by #{@user.uid}"
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post.id }
       else
