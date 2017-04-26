@@ -9,6 +9,13 @@ class UsersController < ApplicationController
     if user_signed_in?
       @post = current_user.posts.build
     end
+
+    @hash = Gmaps4rails.build_markers(@posts) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.name
+      marker.json({title: post.name})
+    end
   end
 
   def edit
