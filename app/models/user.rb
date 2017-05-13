@@ -6,14 +6,19 @@ class User < ApplicationRecord
   has_many :posts
   before_save { self.email = email.downcase }
   validates :email, uniqueness: { case_sensitive: false }
+  validates :nickname, presence: true
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
     unless user
+      nickname = auth.extra.raw_info.name if auth.provider == 'facebook'
+      nickname = auth.info.nickname if auth.provider == 'twitter'
+
       user = User.create(
         uid:      auth.uid,
         provider: auth.provider,
+        nickname: nickname,
         email:    User.dummy_email(auth),
         password: Devise.friendly_token[0, 20]
       )
