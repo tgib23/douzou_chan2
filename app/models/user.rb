@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :posts
   before_save { self.email = email.downcase }
   validates :email, uniqueness: { case_sensitive: false }
+  validates :nickname, presence: true
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first

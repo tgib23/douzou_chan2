@@ -1,23 +1,20 @@
-this is edit
-<% if @user %>
-<% provide(:title, @user.uid) %>
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%#= gravatar_for @user %>
-        <%= @user.uid %>
-      </h1>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-      <%= will_paginate @posts %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :nickname, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
+
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target="_blank">change</a>
+    </div>
   </div>
 </div>
-<% end %>
