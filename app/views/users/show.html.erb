@@ -1,8 +1,9 @@
 <% provide(:title, @user.uid) %>
+
 <%# if @user %>
   <div class="col-md-8">
     <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
+      <h3><%= @user.nickname %>'s Posts (<%= @user.posts.count %>)</h3>
       <ol class="posts">
         <%= render @posts %>
       </ol>

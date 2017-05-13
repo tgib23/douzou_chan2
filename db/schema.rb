@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427132257) do
+ActiveRecord::Schema.define(version: 20170513134146) do
 
   create_table "pics", force: :cascade do |t|
     t.integer  "post_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170427132257) do
     t.string   "provider"
     t.string   "uid"
     t.boolean  "admin",                  default: false
+    t.string   "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
