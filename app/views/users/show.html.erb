@@ -1,5 +1,22 @@
 <% provide(:title, @user.uid) %>
 
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.uid %>
+        </h1>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="post_form">
+        <% if user_signed_in? %>
+        <%= render 'shared/post_form' %>
+        <% end %>
+      </section>
+    </aside>
+  </div>
+
 <%# if @user %>
   <div class="col-md-8">
     <% if @user.posts.any? %>
@@ -25,20 +42,4 @@
     });
 </script>
 
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <h1>
-          <%= gravatar_for @user %>
-          <%= @user.uid %>
-        </h1>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="post_form">
-        <% if user_signed_in? %>
-        <%= render 'shared/post_form' %>
-        <% end %>
-      </section>
-    </aside>
-  </div>
 <%# end %>

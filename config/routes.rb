@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :pics
   get 'home/index'
 
-  get 'welcome/home'
   get "home", to: "home#index", as: "user_root"
   root 'home#index'
 

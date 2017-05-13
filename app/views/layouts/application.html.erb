@@ -16,8 +16,10 @@
       <p class="alert"><%= alert %></p>
     </div>
     <div id="user-info">
+      <%= link_to "Post New", new_post_path %>
+      <br>
       <% if user_signed_in? %>
-        <%= current_user.uid %> が <%= current_user.provider %> 経由でサインインしています
+        <%= link_to current_user.uid, current_user %> が <%= current_user.provider %> 経由でサインインしています
         [<%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>]
       <% else %>
         <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>

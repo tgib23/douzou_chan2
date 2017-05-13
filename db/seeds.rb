@@ -9,6 +9,7 @@
 User.create!(email: "anonymous-user@railstutorial.org",
              provider: "douzou-chan",
              uid: "1",
+             nickname: "anonymous user",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: false)
@@ -21,6 +22,7 @@ for n in 2..100
   User.create!(email: email,
                provider: provider,
                uid: uid,
+               nickname: "anonymous#{uid}",
                password:              password,
                password_confirmation: password)
 end
