@@ -1,0 +1,28 @@
+<%= form_for(@post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name %>
+    <%= f.text_field :author %>
+    <%= f.hidden_field :latitude %>
+    <%= f.hidden_field :longitude %>
+    <%= f.hidden_field :country %>
+    <%= f.hidden_field :administrative_area_level_1 %>
+    <%= f.hidden_field :address %>
+    <%= f.hidden_field :locality %>
+    <%= f.hidden_field :ward %>
+    <%= f.hidden_field :sublocality_level_1 %>
+    <%= f.hidden_field :sublocality_level_2 %>
+    <%= f.hidden_field :sublocality_level_3 %>
+    <%= f.hidden_field :sublocality_level_4 %>
+    <%= f.hidden_field :sublocality_level_5 %>
+  </div>
+
+   <%= f.fields_for :pics do |p| %>
+     <div class="field">
+       <%= p.label :avatar %><br>
+       <%= p.file_field :avatar, :multiple => true, name: "pics[avatar][]" %>
+     </div>
+   <% end %>
+
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

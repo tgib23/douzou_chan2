@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contributions
   resources :pics
   get 'home/index'
 

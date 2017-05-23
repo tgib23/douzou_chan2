@@ -32,11 +32,16 @@ class PostsController < ApplicationController
     @post = @user.posts.build(post_params)
     puts "now in create #{@user.uid}"
 
+    @contribution = Contribution.new
+    @contribution.user_id = @user.id
+
     respond_to do |format|
       if !params[:pics].nil? && @post.save
         params[:pics]['avatar'].each do |a|
           @pic = @post.pics.create!(:avatar => a)
         end
+        @contribution.post_id = @post.id
+		@contribution.save
         flash[:success] = "Post created by #{@user.uid}"
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post.id }
