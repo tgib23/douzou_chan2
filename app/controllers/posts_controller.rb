@@ -40,7 +40,7 @@ class PostsController < ApplicationController
 
     @contribution = Contribution.new
     @contribution.post_id = @post.id
-    @contribution.user_id = @post.user_id
+    @contribution.user_id = current_user.id
     @contribution.diff = diff.to_s
     if @post.update_attributes(post_params)
       @contribution.save
