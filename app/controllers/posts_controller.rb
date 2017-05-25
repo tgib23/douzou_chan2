@@ -29,7 +29,21 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+
+    diff = Hash.new
+    puts post_params
+    puts post_params[:name]
+    puts @post.name
+    if (post_params[:name] != @post.name)
+      diff[:name] = [@post.name, post_params[:name]]
+    end
+
+    @contribution = Contribution.new
+    @contribution.post_id = @post.id
+    @contribution.user_id = @post.user_id
+    @contribution.diff = diff.to_s
     if @post.update_attributes(post_params)
+      @contribution.save
       flash[:success] = "Post updated"
       redirect_to @post
     else
@@ -56,7 +70,7 @@ class PostsController < ApplicationController
           @pic = @post.pics.create!(:avatar => a)
         end
         @contribution.post_id = @post.id
-		@contribution.save
+        @contribution.save
         flash[:success] = "Post created by #{@user.uid}"
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post.id }
