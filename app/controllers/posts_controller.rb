@@ -23,6 +23,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      flash[:success] = "Post updated"
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
+
+
   def create
     if user_signed_in?
       @user = current_user
