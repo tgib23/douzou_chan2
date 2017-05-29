@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :contributions
   resources :pics
   get 'home/index'
 
@@ -13,4 +12,5 @@ Rails.application.routes.draw do
   get "posts/get_geo"
   get "posts/:id", to: 'posts#show'
   patch 'posts/:id', controller: 'posts', action: :update
+#  resources :contributions
 end
