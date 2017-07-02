@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513134146) do
+ActiveRecord::Schema.define(version: 20170523143555) do
+
+  create_table "contributions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.string   "diff"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pics", force: :cascade do |t|
     t.integer  "post_id"

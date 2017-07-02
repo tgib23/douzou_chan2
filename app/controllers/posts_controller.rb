@@ -23,6 +23,35 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    diff = Hash.new
+    attributions = [:country, :address, :name, :year, :link, :author]
+	attributions.each {|attr|
+      if (post_params[attr] != @post[attr])
+        diff[attr] = [@post[attr], post_params[attr]]
+      end
+    }
+
+    @contribution = Contribution.new
+    @contribution.post_id = @post.id
+    @contribution.user_id = current_user.id
+    @contribution.diff = diff.to_s
+    if @post.update_attributes(post_params)
+      @contribution.save
+      flash[:success] = "Post updated"
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
+
+
   def create
     if user_signed_in?
       @user = current_user
@@ -32,11 +61,18 @@ class PostsController < ApplicationController
     @post = @user.posts.build(post_params)
     puts "now in create #{@user.uid}"
 
+
     respond_to do |format|
       if !params[:pics].nil? && @post.save
         params[:pics]['avatar'].each do |a|
           @pic = @post.pics.create!(:avatar => a)
         end
+
+        @contribution = Contribution.new
+        @contribution.user_id = @user.id
+        @contribution.post_id = @post.id
+        @contribution.save
+
         flash[:success] = "Post created by #{@user.uid}"
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post.id }

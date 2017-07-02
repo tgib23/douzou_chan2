@@ -1,0 +1,21 @@
+<%= javascript_include_tag 'post-edit' %>
+<% provide(:title, @post.id) %>
+<%# if @user %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%#= gravatar_for @user %>
+          <%#= @user.uid %>
+        </h1>
+        <%#= render 'shared/user_info' %>
+      </section>
+      <section class="post_form">
+        <%= render 'shared/post_form' %>
+      </section>
+    </aside>
+  </div>
+<div id="post_content"></div>
+<div id="geoLocation"></div>
+<div id="coordinate">取得中</div>
+<%# end %>
