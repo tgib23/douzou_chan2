@@ -31,12 +31,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     diff = Hash.new
-    puts post_params
-    puts post_params[:name]
-    puts @post.name
-    if (post_params[:name] != @post.name)
-      diff[:name] = [@post.name, post_params[:name]]
-    end
+    attributions = [:country, :address, :name, :year, :link, :author]
+	attributions.each {|attr|
+      if (post_params[attr] != @post[attr])
+        diff[attr] = [@post[attr], post_params[attr]]
+      end
+    }
 
     @contribution = Contribution.new
     @contribution.post_id = @post.id
