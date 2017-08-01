@@ -1,8 +1,10 @@
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_field :name, placeholder: @post.name %>
-    <%= f.text_field :author, placeholder: @post.author %>
+    <%= f.text_field :name, :placeholder => "Name of the Statue" %>
+    <%= f.text_field :author, :placeholder => "Creator" %>
+    <%= f.text_field :year, :placeholder => "Year" %>
+
     <%= f.hidden_field :latitude %>
     <%= f.hidden_field :longitude %>
     <%= f.hidden_field :country %>
@@ -15,6 +17,16 @@
     <%= f.hidden_field :sublocality_level_3 %>
     <%= f.hidden_field :sublocality_level_4 %>
     <%= f.hidden_field :sublocality_level_5 %>
+    <%= f.hidden_field :country_ja %>
+    <%= f.hidden_field :administrative_area_level_1_ja %>
+    <%= f.hidden_field :address_ja %>
+    <%= f.hidden_field :locality_ja %>
+    <%= f.hidden_field :ward_ja %>
+    <%= f.hidden_field :sublocality_level_1_ja %>
+    <%= f.hidden_field :sublocality_level_2_ja %>
+    <%= f.hidden_field :sublocality_level_3_ja %>
+    <%= f.hidden_field :sublocality_level_4_ja %>
+    <%= f.hidden_field :sublocality_level_5_ja %>
   </div>
 
    <%= f.fields_for :pics do |p| %>

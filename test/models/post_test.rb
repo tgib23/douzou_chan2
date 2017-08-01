@@ -8,11 +8,11 @@ class PostTest < ActiveSupport::TestCase
 	@pic2 = Pic.new :id => 31
     @post = @user.posts.create(latitude: "35.7324356",
                      longitude: "139.6578569",
-                     country: "日本",
-					 administrative_area_level_1: "神奈川県",
-					 locality: "横浜市",
-					 ward: "青葉区",
-					 sublocality_level_1: "青葉台",
+                     country: "Japan",
+					 administrative_area_level_1: "Kanagawa",
+					 locality: "Yokohama",
+					 ward: "Aoba",
+					 sublocality_level_1: "Aobadai",
 					 sublocality_level_2: "2",
 					 sublocality_level_4: "3",
 					 sublocality_level_5: "17",
@@ -21,6 +21,15 @@ class PostTest < ActiveSupport::TestCase
 					 name: "金剛力士像",
 					 year: "1400",
 					 link: "http://www.yahoo.co.jp,http://www.google.co.jp,http://microsoft.co.jp",
+                     country_ja: "日本",
+					 administrative_area_level_1_ja: "神奈川県",
+					 locality_ja: "横浜市",
+					 ward_ja: "青葉区",
+					 sublocality_level_1_ja: "青葉台",
+					 sublocality_level_2_ja: "2",
+					 sublocality_level_4_ja: "3",
+					 sublocality_level_5_ja: "17",
+					 address_ja: "日本 神奈川県横浜市緑区青葉区青葉台2-3-17",
 					 # street should be added
                      user_id: @user.id)
     @post_default = @post

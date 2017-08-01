@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523143555) do
+ActiveRecord::Schema.define(version: 20170731144311) do
 
   create_table "contributions", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20170523143555) do
     t.text     "link"
     t.string   "author"
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "administrative_area_level_1"
     t.string   "locality"
     t.string   "ward"
@@ -45,8 +45,18 @@ ActiveRecord::Schema.define(version: 20170523143555) do
     t.string   "sublocality_level_3"
     t.string   "sublocality_level_4"
     t.string   "sublocality_level_5"
-    t.float    "latitude",                    null: false
-    t.float    "longitude",                   null: false
+    t.float    "latitude",                       null: false
+    t.float    "longitude",                      null: false
+    t.string   "country_ja"
+    t.string   "address_ja"
+    t.string   "administrative_area_level_1_ja"
+    t.string   "locality_ja"
+    t.string   "ward_ja"
+    t.string   "sublocality_level_1_ja"
+    t.string   "sublocality_level_2_ja"
+    t.string   "sublocality_level_3_ja"
+    t.string   "sublocality_level_4_ja"
+    t.string   "sublocality_level_5_ja"
     t.index ["latitude"], name: "index_posts_on_latitude"
     t.index ["longitude"], name: "index_posts_on_longitude"
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
