@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 
     diff = Hash.new
     attributions = [:country, :address, :name, :year, :link, :author]
-	attributions.each {|attr|
+    attributions.each {|attr|
       if (post_params[attr] != @post[attr])
         diff[attr] = [@post[attr], post_params[attr]]
       end
@@ -93,11 +93,23 @@ class PostsController < ApplicationController
     @latitude=params[:lat]
     @longitude=params[:lon]
     coordinate = @latitude + "," + @longitude
+    Geocoder.configure(:language  => :en)
     geo_info = Geocoder.search(coordinate)[0].address_components
-    @country = geo_info.select{|e| e['types'] == ["country", "political"]}[0]["long_name"]
-    @administrative_area_level_1 = geo_info.select{|e| e['types'] == ["administrative_area_level_1", "political"]}[0]["long_name"]
+    Geocoder.configure(:language  => :ja)
+    geo_info_ja = Geocoder.search(coordinate)[0].address_components
+    @country    = geo_info.select{|e| e['types'] == ["country", "political"]}[0]["long_name"]
+    @country_ja = geo_info_ja.select{|e| e['types'] == ["country", "political"]}[0]["long_name"]
+	puts @country_ja
+    @administrative_area_level_1    = geo_info.select{|e| e['types'] == ["administrative_area_level_1", "political"]}[0]["long_name"]
+    @administrative_area_level_1_ja = geo_info.select{|e| e['types'] == ["administrative_area_level_1", "political"]}[0]["long_name"]
+
     @locality = extract_long_name(
       geo_info.select{|e|
+        e['types'].include?("locality") && e['types'].include?("political") && !e['types'].include?("ward")
+      }
+    )
+    @locality_ja = extract_long_name(
+      geo_info_ja.select{|e|
         e['types'].include?("locality") && e['types'].include?("political") && !e['types'].include?("ward")
       }
     )
@@ -106,33 +118,64 @@ class PostsController < ApplicationController
         e['types'].include?("locality") && e['types'].include?("political") && e['types'].include?("ward")
       }
     )
-   @sublocality_level_1 = extract_long_name(
-     geo_info.select{|e|
-       e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_1")
-     }
-   )
-   @sublocality_level_2 = extract_long_name(
-     geo_info.select{|e|
-       e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_2")
-     }
-   )
-   @sublocality_level_3 = extract_long_name(
-     geo_info.select{|e|
-       e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_3")
-     }
-   )
-   @sublocality_level_4 = extract_long_name(
-     geo_info.select{|e|
-       e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_4")
-     }
-   )
-   @sublocality_level_5 = extract_long_name(
-     geo_info.select{|e|
-       e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_5")
-     }
-   )
+    @ward_ja = extract_long_name(
+      geo_info_ja.select{|e|
+        e['types'].include?("locality") && e['types'].include?("political") && e['types'].include?("ward")
+      }
+    )
+    @sublocality_level_1 = extract_long_name(
+      geo_info.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_1")
+      }
+    )
+    @sublocality_level_1_ja = extract_long_name(
+      geo_info_ja.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_1")
+      }
+    )
+    @sublocality_level_2 = extract_long_name(
+      geo_info.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_2")
+      }
+    )
+    @sublocality_level_2_ja = extract_long_name(
+      geo_info_ja.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_2")
+      }
+    )
+    @sublocality_level_3 = extract_long_name(
+      geo_info.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_3")
+      }
+    )
+    @sublocality_level_3_ja = extract_long_name(
+      geo_info_ja.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_3")
+      }
+    )
+    @sublocality_level_4 = extract_long_name(
+      geo_info.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_4")
+      }
+    )
+    @sublocality_level_4_ja = extract_long_name(
+      geo_info_ja.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_4")
+      }
+    )
+    @sublocality_level_5 = extract_long_name(
+      geo_info.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_5")
+      }
+    )
+    @sublocality_level_5_ja = extract_long_name(
+      geo_info_ja.select{|e|
+        e['types'].include?("sublocality") && e['types'].include?("political") && e['types'].include?("sublocality_level_5")
+      }
+    )
 
-  @address = geo_info.map{|ad| ad['long_name']}[1..-1].reverse.join(' ')
+    @address    = geo_info.map{|ad| ad['long_name']}[1..-1].reverse.join(' ')
+    @address_ja = geo_info_ja.map{|ad| ad['long_name']}[1..-1].reverse.join(' ')
 
     respond_to do |format|
       format.js
@@ -146,6 +189,9 @@ class PostsController < ApplicationController
                                    :administrative_area_level_1, :address,
                                    :locality, :ward, :sublocality_level_1, :sublocality_level_2,
                                    :sublocality_level_3, :sublocality_level_4, :sublocality_level_5,
+                                   :country_ja, :administrative_area_level_1_ja, :address_ja,
+                                   :locality_ja, :ward_ja, :sublocality_level_1_ja, :sublocality_level_2_ja,
+                                   :sublocality_level_3_ja, :sublocality_level_4_ja, :sublocality_level_5_ja,
                                    :year, :link, :author, :user_id,
                                    pics: [:id, :post_id, :avatar])
     end
