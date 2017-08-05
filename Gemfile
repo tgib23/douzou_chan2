@@ -66,5 +66,6 @@ gem 'geocoder'
 gem 'carrierwave'
 gem 'gmaps4rails'
 gem 'underscore-rails'
+gem 'settingslogic'
 
 
