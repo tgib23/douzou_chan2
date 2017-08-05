@@ -29,12 +29,9 @@
     <%= f.hidden_field :sublocality_level_5_ja %>
   </div>
 
-   <%= f.fields_for :pics do |p| %>
-     <div class="field">
-       <%= p.label :avatar %><br>
-       <%= p.file_field :avatar, :multiple => true, name: "pics[avatar][]" %>
-     </div>
-   <% end %>
+  <div class="field">
+    <%= f.file_field :avatar, :multiple => true, name: "pics[avatar][]" %>
+  </div>
 
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

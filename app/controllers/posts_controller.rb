@@ -24,7 +24,15 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    if user_signed_in?
+      @user = current_user
+      @post = Post.find(params[:id])
+      @pic = @post.pics.build
+    else
+      @user = User.find_by( uid: 1)
+      @post = Post.find(params[:id])
+      @pic = @post.pics.build
+    end
   end
 
   def update
@@ -37,6 +45,12 @@ class PostsController < ApplicationController
         diff[attr] = [@post[attr], post_params[attr]]
       end
     }
+
+    if params[:pics]
+      params[:pics]['avatar'].each do |a|
+        @pic = @post.pics.create!(:avatar => a)
+      end
+    end
 
     @contribution = Contribution.new
     @contribution.post_id = @post.id
