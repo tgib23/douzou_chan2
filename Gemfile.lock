@@ -172,6 +172,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    settingslogic (2.0.9)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -232,6 +233,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   rails-controller-testing
   sass-rails (~> 5.0)
+  settingslogic
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

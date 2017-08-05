@@ -1,0 +1,12 @@
+defaults: &defaults
+  root:
+    user_id: 1
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

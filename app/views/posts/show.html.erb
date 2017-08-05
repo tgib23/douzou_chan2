@@ -14,6 +14,11 @@
   <strong>Address:</strong>
   <%= @post.address %>
 </p>
+
+<% if @user.uid != Settings.root.user_id %>
+  <%= link_to "Post Edit", edit_post_path %>
+<% end %>
+
 <% @pics.each do |p| %>
   <%= image_tag p.avatar_url %>
   <%= link_to "Edit Attachment", edit_pic_path(p) %>

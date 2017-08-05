@@ -13,6 +13,11 @@ class PostsController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      @user = current_user
+    else
+      @user = User.find_by( uid: 1)
+    end
     @post = Post.find(params[:id])
     @pics = @post.pics.all
     @hash = Gmaps4rails.build_markers(@post) do |post, marker|
@@ -29,9 +34,9 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
       @pic = @post.pics.build
     else
-      @user = User.find_by( uid: 1)
       @post = Post.find(params[:id])
-      @pic = @post.pics.build
+      flash[:error] = "You have to login for Update the post"
+      redirect_to @post
     end
   end
 
