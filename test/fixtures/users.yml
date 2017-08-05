@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one: 
+  id: 101
   uid: 101
   email: test1@test.com
 # column: value

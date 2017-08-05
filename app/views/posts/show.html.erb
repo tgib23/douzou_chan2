@@ -15,7 +15,7 @@
   <%= @post.address %>
 </p>
 
-<% if @user.id != Settings.root.user_id %>
+<% if @user.uid != Settings.root.user_id %>
   <%= link_to "Post Edit", edit_post_path %>
 <% end %>
 
