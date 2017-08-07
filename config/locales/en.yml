@@ -21,3 +21,27 @@
 
 en:
   hello: "Hello world"
+  home:
+    index:
+      title: 'Dozo GO!'
+      post_link: 'Post New'
+  posts:
+    show:
+      title: "Name of the Statue"
+      creator: 'Creator'
+      address: 'Address'
+  shared:
+    _post_form:
+      name_field: 'Name of the Statue'
+      creator_field: 'Creator'
+      year_field: 'Year'
+      submit: 'Post'
+  layouts:
+    application:
+      signin1: 'logged in via'
+      signin2: ''
+  helpers:
+    submit:
+      post:
+        create: "Create Post"
+        update: "Update Post"
