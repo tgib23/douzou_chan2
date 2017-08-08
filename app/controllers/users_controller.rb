@@ -20,6 +20,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if user_signed_in?
+      redirect_to @user unless @user.id == current_user.id
+    else
+      redirect_to @user
+    end
   end
 
   def destroy

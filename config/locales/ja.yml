@@ -3,6 +3,9 @@ ja:
     index:
       title: '銅像GO!'
       post_link: '新規投稿'
+  users:
+    show:
+      edit_user: 'ニックネームの変更'
   posts:
     show:
       title: "人物名"

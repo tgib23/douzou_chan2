@@ -7,6 +7,9 @@
           <%= gravatar_for @user %>
           <%= @user.uid %>
         </h1>
+        <% if user_signed_in? && @user.id == current_user.id %>
+          <%= link_to t('users.show.edit_user'), edit_user_path(@user) %>
+        <% end %>
         <%= render 'shared/user_info' %>
       </section>
       <section class="post_form">
