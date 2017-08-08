@@ -25,6 +25,9 @@ en:
     index:
       title: 'Dozo GO!'
       post_link: 'Post New'
+  users:
+    show:
+      edit_user: 'Edit Nickname'
   posts:
     show:
       title: "Name of the Statue"
