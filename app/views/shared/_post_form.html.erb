@@ -1,9 +1,9 @@
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_field :name, :placeholder => "Name of the Statue" %>
-    <%= f.text_field :author, :placeholder => "Creator" %>
-    <%= f.text_field :year, :placeholder => "Year" %>
+    <%= f.text_field :name, :placeholder => t('shared._post_form.name_field') %>
+    <%= f.text_field :author, :placeholder => t('shared._post_form.creator_field') %>
+    <%= f.text_field :year, :placeholder => t('shared._post_form.year_field') %>
 
     <%= f.hidden_field :latitude %>
     <%= f.hidden_field :longitude %>
@@ -33,5 +33,5 @@
     <%= f.file_field :avatar, :multiple => true, name: "pics[avatar][]" %>
   </div>
 
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>

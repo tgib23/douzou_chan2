@@ -1,0 +1,29 @@
+ja:
+  home:
+    index:
+      title: '銅像GO!'
+      post_link: '新規投稿'
+  posts:
+    show:
+      title: "人物名"
+      creator: '製作者'
+      address: '所在地'
+  shared:
+    _post_form:
+      name_field: '人物名'
+      creator_field: '製作者'
+      year_field: '制作年'
+      submit: '投稿'
+  layouts:
+    application:
+      signin1: 'が'
+      signin2: ' 経由でサインインしています'
+      
+  time:
+    formats:
+      default: ! '%Y/%m/%d %H:%M:%S'
+  helpers:
+    submit:
+      post:
+        create: "投稿"
+        update: "更新"
