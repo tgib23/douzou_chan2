@@ -26,6 +26,7 @@ class PostsController < ApplicationController
       marker.infowindow post.name
       marker.json({title: post.name})
     end
+    @nearby_posts = nearby_posts(@post)
   end
 
   def edit
@@ -217,5 +218,9 @@ class PostsController < ApplicationController
 
     def extract_long_name (r)
       r[0]["long_name"] unless r.empty?
+    end
+
+    def nearby_posts(target)
+      Post.where("latitude>=? AND latitude<?",target.latitude-0.002,target.latitude+0.002).where("longitude>=? AND longitude<?",target.longitude-0.002,target.longitude+0.002)
     end
 end

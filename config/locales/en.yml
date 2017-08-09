@@ -33,6 +33,7 @@ en:
       title: "Name of the Statue"
       creator: 'Creator'
       address: 'Address'
+      nearby_posts: 'Nearby Posts'
   shared:
     _post_form:
       name_field: 'Name of the Statue'

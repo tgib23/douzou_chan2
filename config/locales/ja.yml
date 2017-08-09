@@ -11,6 +11,7 @@ ja:
       title: "人物名"
       creator: '製作者'
       address: '所在地'
+      nearby_posts: '近隣の銅像'
   shared:
     _post_form:
       name_field: '人物名'
