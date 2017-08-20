@@ -1,5 +1,8 @@
 anonymous user id : 1
 
+Dauzou_Go_admin user id : 2
+(OAuthログインするユーザはdb:seedで作成出来ない)
+
 postのuser_idはそのpostを作った人
 contribution の user_id はそのcontributionを作った人
 
