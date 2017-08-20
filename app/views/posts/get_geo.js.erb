@@ -21,3 +21,5 @@ $('#post_sublocality_level_4_ja').val("<%= @sublocality_level_4_ja %>");
 $('#post_sublocality_level_5_ja').val("<%= @sublocality_level_5_ja %>");
 $('#post_address_ja').val("<%= @address_ja %>");
 $('#coordinate').html("<%= @address %>");
+$('#nearby_posts').html("<ul><%= escape_javascript(render(:partial => @nearby_posts)) %></ul>");
+$('#nearby_pics').html("<ul><%= escape_javascript(render(@nearby_pics)) %></ul>");

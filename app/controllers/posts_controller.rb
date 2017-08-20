@@ -119,7 +119,6 @@ class PostsController < ApplicationController
     geo_info_ja = Geocoder.search(coordinate)[0].address_components
     @country    = geo_info.select{|e| e['types'] == ["country", "political"]}[0]["long_name"]
     @country_ja = geo_info_ja.select{|e| e['types'] == ["country", "political"]}[0]["long_name"]
-	puts @country_ja
     @administrative_area_level_1    = geo_info.select{|e| e['types'] == ["administrative_area_level_1", "political"]}[0]["long_name"]
     @administrative_area_level_1_ja = geo_info.select{|e| e['types'] == ["administrative_area_level_1", "political"]}[0]["long_name"]
 
@@ -196,6 +195,15 @@ class PostsController < ApplicationController
 
     @address    = geo_info.map{|ad| ad['long_name']}[1..-1].reverse.join(' ')
     @address_ja = geo_info_ja.map{|ad| ad['long_name']}[1..-1].reverse.join(' ')
+
+    for_nearby_post = Post.new
+    for_nearby_post.latitude = @latitude
+    for_nearby_post.longitude = @longitude
+    @nearby_pics = Array.new
+    @nearby_posts = nearby_posts(for_nearby_post)
+    @nearby_posts.each do |np|
+      @nearby_pics.push(np.pics.all[0])
+    end
 
     respond_to do |format|
       format.js
