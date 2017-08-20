@@ -15,3 +15,12 @@ User.create!(email: "anonymous-user@railstutorial.org",
              first_login: 0,
              admin: false)
 
+User.create!(email: "899247255273721856-twitter@example.com",
+             provider: "twitter",
+             uid: "2",
+             nickname: "Douzo_Go_Admin",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             first_login: 0,
+             admin: false)
+
