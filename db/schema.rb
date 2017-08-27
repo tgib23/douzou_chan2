@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806031411) do
+ActiveRecord::Schema.define(version: 20170827154051) do
 
   create_table "contributions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "post_id"
     t.string   "diff"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "point",      default: 0, null: false
   end
 
   create_table "pics", force: :cascade do |t|
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170806031411) do
     t.boolean  "admin",                  default: false
     t.string   "nickname"
     t.integer  "first_login",            default: 1
+    t.integer  "sum_point",              default: 0,     null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

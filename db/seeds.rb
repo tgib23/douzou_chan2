@@ -13,5 +13,6 @@ User.create!(email: "anonymous-user@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
              first_login: 0,
+             sum_point: 0,
              admin: false)
 
