@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  NEW_POST_PT_NO_NAME = 50
+  NEW_POST_PT_LOW     = 100
+  NEW_POST_PT_HIGH    = 1000
+  UPDATE_POST_PT      = 10
 
   def new
     if user_signed_in?
@@ -61,9 +65,13 @@ class PostsController < ApplicationController
     @contribution = Contribution.new
     @contribution.post_id = @post.id
     @contribution.user_id = current_user.id
-    @contribution.diff = diff.to_s
+    @contribution.diff    = diff.to_s
+    point_of_this_update  = calc_update_pt(diff)
+    @contribution.point   = point_of_this_update
     if @post.update_attributes(post_params)
       @contribution.save
+        current_user.sum_point += point_of_this_update
+        current_user.save
       flash[:success] = "Post updated"
       redirect_to @post
     else
@@ -91,7 +99,11 @@ class PostsController < ApplicationController
         @contribution = Contribution.new
         @contribution.user_id = @user.id
         @contribution.post_id = @post.id
+        point_of_this_post    = calc_new_pt(@post)
+        @contribution.point   = point_of_this_post
         @contribution.save
+        @user.sum_point       += point_of_this_post
+        @user.save
 
         flash[:success] = "Post created by #{@user.uid}"
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -231,4 +243,21 @@ class PostsController < ApplicationController
     def nearby_posts(target)
       Post.where("latitude>=? AND latitude<?",target.latitude-0.002,target.latitude+0.002).where("longitude>=? AND longitude<?",target.longitude-0.002,target.longitude+0.002)
     end
+
+    # calc point of new post algorithm
+    def calc_new_pt(post)
+      if post.name.empty?
+        NEW_POST_PT_NO_NAME
+      else
+        # algorithm should be implemented later
+        NEW_POST_PT_LOW
+      end
+    end
+
+    # calc point of post update algorithm
+    def calc_update_pt(diff)
+      # algorithm should be implemented later
+      diff.size * UPDATE_POST_PT
+    end
+
 end
