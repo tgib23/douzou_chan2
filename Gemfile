@@ -68,5 +68,6 @@ gem 'rmagick'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'settingslogic'
+gem 'wikipedia-client'
 
 
