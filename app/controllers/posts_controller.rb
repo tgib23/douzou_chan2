@@ -1,5 +1,9 @@
+require 'wikipedia'
+
 class PostsController < ApplicationController
   NEW_POST_PT_NO_NAME = 50
+  NEW_POST_PT_WIKI    = 100
+  NEW_POST_PT_GOOGLE  = 500
   NEW_POST_PT_LOW     = 100
   NEW_POST_PT_HIGH    = 1000
   UPDATE_POST_PT      = 10
@@ -250,7 +254,23 @@ class PostsController < ApplicationController
         NEW_POST_PT_NO_NAME
       else
         # algorithm should be implemented later
-        NEW_POST_PT_LOW
+        if !alphabet?(post.name)
+           Wikipedia.configure {
+             domain 'ja.wikipedia.org'
+             path   'w/api.php'
+           }
+        else
+           Wikipedia.configure {
+             domain 'en.wikipedia.org'
+             path   'w/api.php'
+           }
+        end
+
+        if Wikipedia.find("#{post.name}").summary.nil?
+          NEW_POST_PT_GOOGLE
+        else
+          NEW_POST_PT_WIKI
+        end
       end
     end
 
@@ -258,6 +278,10 @@ class PostsController < ApplicationController
     def calc_update_pt(diff)
       # algorithm should be implemented later
       diff.size * UPDATE_POST_PT
+    end
+
+    def alphabet?(s)
+      (s =~ /^[A-Za-z\s\!-\/\:-\?\[-\_\{-\}]+$/) == 0
     end
 
 end
