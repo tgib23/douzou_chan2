@@ -69,5 +69,4 @@ gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'settingslogic'
 gem 'wikipedia-client'
-
-
+gem 'google_custom_search_api'
