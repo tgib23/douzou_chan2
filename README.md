@@ -8,6 +8,8 @@ re-start douzou_chan project again with
 * omniauth
 * devise
 * google map
+* google custom search api
+* wikipedia client
 
 ## CI
 

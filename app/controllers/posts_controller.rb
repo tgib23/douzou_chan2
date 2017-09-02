@@ -3,10 +3,10 @@ require 'wikipedia'
 class PostsController < ApplicationController
   NEW_POST_PT_NO_NAME = 50
   NEW_POST_PT_WIKI    = 100
-  NEW_POST_PT_GOOGLE  = 500
-  NEW_POST_PT_LOW     = 100
-  NEW_POST_PT_HIGH    = 1000
   UPDATE_POST_PT      = 10
+  MAJOR_MINOR_THRESHOLD    = 10000 # temporal
+  NEW_POST_PT_GOOGLE_MAJOR = 500
+  NEW_POST_PT_GOOGLE_MINOR = 1000
 
   def new
     if user_signed_in?
@@ -267,8 +267,16 @@ class PostsController < ApplicationController
         end
 
         if Wikipedia.find("#{post.name}").summary.nil?
-          NEW_POST_PT_GOOGLE
+          results = GoogleCustomSearchApi.search("#{post.name}")
+          if !results.nil? && results.queries.request[0].totalResults.to_i > MAJOR_MINOR_THRESHOLD
+			puts "koko1", results.queries.request[0]
+            NEW_POST_PT_GOOGLE_MAJOR
+          else
+			puts "koko2", results.queries.request[0]
+            NEW_POST_PT_GOOGLE_MINOR
+          end
         else
+		  puts "koko3"
           NEW_POST_PT_WIKI
         end
       end
