@@ -25,3 +25,16 @@ $ rails console
 > Post.delete_all
 > Pic.delete_all
 ```
+
+
+## 開発用リリースフロー
+
+```
+# rbenv local 2.3.0
+# bundle install
+# rake db:migrate
+# rails db:seed
+# cp -r <crt_path>/crt ./
+# cp <env_path>/.env ./
+# nohup pumactl start >> log/development.log &
+```
