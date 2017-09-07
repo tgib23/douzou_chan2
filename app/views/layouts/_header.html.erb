@@ -1,0 +1,24 @@
+<div class="ui huge menu">
+  <%= link_to t('home.index.title'), root_path, :class => "active item" %>
+  <%= link_to "Post New", new_post_path, :class => "item" %>
+
+  <div class="right menu">
+    <div class="ui dropdown item">
+      Language <i class="dropdown icon"></i>
+      <div class="menu">
+        <%= link_to_if params[:locale].present?, '日本語',   url_for(controller: controller.controller_name, action: controller.action_name, locale: ''),   :class => "item" %>
+        <%= link_to_if params[:locale] != 'en',  'English',  url_for(controller: controller.controller_name, action: controller.action_name, locale: 'en'), :class => "item" %>
+      </div>
+    </div>
+
+    <% if user_signed_in? %>
+      <div class="item">
+        <%= link_to current_user.nickname, current_user %> <%= t 'layouts.application.signin1' %> <%= current_user.provider %> <%= t 'layouts.application.signin2' %>
+        [<%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>]
+      </div>
+    <% else %>
+      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, :class => "item" %>
+      <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path,   :class => "item" %>
+    <% end %>
+  </div>
+</div>
