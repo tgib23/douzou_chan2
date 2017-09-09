@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require underscore
 //= require gmaps/google
+// Loads all Semantic javascripts
+//= require semantic-ui
+
+$(function(){
+  $('.ui.dropdown').dropdown();
+})
