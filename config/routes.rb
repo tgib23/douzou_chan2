@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     get "posts/get_geo"
     get "posts/:id", to: 'posts#show'
     patch 'posts/:id', controller: 'posts', action: :update
-    resources :contributions, only: [ :index, :show, :edit, :new ]
+    resources :contributions, only: [ :index, :show, :edit, :new, :update ]
   end
 end

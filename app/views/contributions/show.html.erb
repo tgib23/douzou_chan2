@@ -15,5 +15,10 @@
   <%= @contribution.diff %>
 </p>
 
+<p>
+  <strong>Point:</strong>
+  <%= @contribution.point %>
+</p>
+
 <%= link_to 'Edit', edit_contribution_path(@contribution) %> |
 <%= link_to 'Back', contributions_path %>
