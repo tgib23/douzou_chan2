@@ -1,15 +1,18 @@
 class ContributionsController < ApplicationController
   before_action :set_contribution, only: [:show, :edit, :update, :destroy]
+  ADMIN_USER_ID = 2
 
   # GET /contributions
   # GET /contributions.json
   def index
     @contributions = Contribution.all
+    @show_edit = show_edit?
   end
 
   # GET /contributions/1
   # GET /contributions/1.json
   def show
+    @show_edit = show_edit?
   end
 
   # GET /contributions/new
@@ -19,6 +22,9 @@ class ContributionsController < ApplicationController
 
   # GET /contributions/1/edit
   def edit
+    if !user_signed_in? || current_user.id != ADMIN_USER_ID
+      redirect_to contributions_path
+    end
   end
 
   # POST /contributions
@@ -71,4 +77,10 @@ class ContributionsController < ApplicationController
     def contribution_params
       params.require(:contribution).permit(:user_id, :post_id, :diff, :point)
     end
+
+    def show_edit?
+      return true if user_signed_in? && current_user.id == ADMIN_USER_ID
+	  return false
+    end
+
 end

@@ -21,7 +21,9 @@
         <td><%= contribution.diff %></td>
         <td><%= contribution.point %></td>
         <td><%= link_to 'Show', contribution %></td>
-        <td><%= link_to 'Edit', edit_contribution_path(contribution) %></td>
+        <% if @show_edit %>
+          <td><%= link_to 'Edit', edit_contribution_path(contribution) %></td>
+        <% end %>
         <td><%= link_to 'Destroy', contribution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

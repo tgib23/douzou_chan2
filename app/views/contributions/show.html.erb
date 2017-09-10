@@ -20,5 +20,7 @@
   <%= @contribution.point %>
 </p>
 
-<%= link_to 'Edit', edit_contribution_path(@contribution) %> |
+<% if @show_edit %>
+  <%= link_to 'Edit', edit_contribution_path(@contribution) %> |
+<% end %>
 <%= link_to 'Back', contributions_path %>
