@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827154051) do
+ActiveRecord::Schema.define(version: 20170910135703) do
 
   create_table "contributions", force: :cascade do |t|
     t.integer  "user_id"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170827154051) do
     t.string   "nickname"
     t.integer  "first_login",            default: 1
     t.integer  "sum_point",              default: 0,     null: false
+    t.boolean  "banned",                 default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
