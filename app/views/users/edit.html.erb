@@ -8,7 +8,12 @@
 
       <%= f.label :name %>
       <%= f.text_field :nickname, class: 'form-control' %>
-
+      <% if @control_ban %>
+        <%= f.label :not_ban_this_user %>
+        <%= f.radio_button :banned, false, class: 'form-control' %>
+        <%= f.label :ban_this_user %>
+        <%= f.radio_button :banned, true, class: 'form-control' %>
+      <% end %>
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
 

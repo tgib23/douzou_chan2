@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
+  ADMIN_USER_ID = 2
 
   def show
     @user = User.find(params[:id])
@@ -21,7 +22,8 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if user_signed_in?
-      redirect_to @user unless @user.id == current_user.id
+      redirect_to @user unless @user.id == current_user.id or current_user.id == ADMIN_USER_ID
+      @control_ban = current_user.id == ADMIN_USER_ID
     else
       redirect_to @user
     end
@@ -47,11 +49,12 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :nickname, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :banned)
     end
 
     # Confirms an admin user.
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
+
 end
