@@ -51,6 +51,11 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    if user_signed_in?
+      @user = current_user
+    else
+      @user = User.find_by( uid: 1)
+    end
 
     diff = Hash.new
     attributions = [:country, :address, :name, :year, :link, :author]
@@ -62,7 +67,7 @@ class PostsController < ApplicationController
 
     if params[:pics]
       params[:pics]['avatar'].each do |a|
-        @pic = @post.pics.create!(:avatar => a)
+        @pic = @post.pics.create!(:avatar => a, :user_id => @user.id)
       end
     end
 
@@ -97,7 +102,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if !params[:pics].nil? && @post.save
         params[:pics]['avatar'].each do |a|
-          @pic = @post.pics.create!(:avatar => a)
+          @pic = @post.pics.create!(:avatar => a, :user_id => @user.id)
         end
 
         @contribution = Contribution.new
