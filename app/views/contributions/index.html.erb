@@ -8,7 +8,8 @@
       <th>User</th>
       <th>Post</th>
       <th>Diff</th>
-      <th colspan="3"></th>
+      <th>Points</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -18,8 +19,11 @@
         <td><%= contribution.user_id %></td>
         <td><%= contribution.post_id %></td>
         <td><%= contribution.diff %></td>
+        <td><%= contribution.point %></td>
         <td><%= link_to 'Show', contribution %></td>
-        <td><%= link_to 'Edit', edit_contribution_path(contribution) %></td>
+        <% if @show_edit %>
+          <td><%= link_to 'Edit', edit_contribution_path(contribution) %></td>
+        <% end %>
         <td><%= link_to 'Destroy', contribution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
