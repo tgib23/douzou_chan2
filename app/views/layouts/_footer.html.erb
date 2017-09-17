@@ -1,14 +1,18 @@
 <div class="ui bottom fixed menu">
   <%= link_to t('home.index.title'), root_path, :class => "active item" %>
-  <%= link_to "Post New", new_post_path, :class => "item" %>
+  <%= link_to t('home.index.post_link'), new_post_path, :class => "item" %>
 
   <% if user_signed_in? %>
     <div class="item">
-      <%= link_to current_user.nickname, current_user %> <%= t 'layouts.application.signin1' %> <%= current_user.provider %> <%= t 'layouts.application.signin2' %>
+      <% if current_user.provider == "facebook" %>
+        <i class="facebook icon"></i>
+      <% else current_user.provider == "twitter" %>
+        <i class="twitter icon"></i>
+      <% end %>
+      <%= link_to current_user.nickname, current_user %>
       [<%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>]
     </div>
   <% else %>
-    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, :class => "item" %>
-    <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path,   :class => "item" %>
+    <%= link_to t('home.index.signin'), home_signin_path, :class => "item" %>
   <% end %>
 </div>
