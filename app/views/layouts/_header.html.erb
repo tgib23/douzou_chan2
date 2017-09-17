@@ -1,9 +1,9 @@
-<div class="ui huge menu">
+<div class="ui top fixed menu">
   <%= link_to t('home.index.title'), root_path, :class => "active item" %>
 
   <div class="right menu">
-    <div class="ui dropdown item">
-      Language <i class="dropdown icon"></i>
+    <div class="ui language dropdown right floating icon item" id="languages" data-content="Select Language">
+      <i class="world icon"></i>
       <div class="menu">
         <%= link_to_if params[:locale].present?, '日本語',   url_for(controller: controller.controller_name, action: controller.action_name, locale: ''),   :class => "item" %>
         <%= link_to_if params[:locale] != 'en',  'English',  url_for(controller: controller.controller_name, action: controller.action_name, locale: 'en'), :class => "item" %>

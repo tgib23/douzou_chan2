@@ -42,8 +42,6 @@ en:
       submit: 'Post'
   layouts:
     application:
-      signin1: 'logged in via'
-      signin2: ''
   helpers:
     submit:
       post:

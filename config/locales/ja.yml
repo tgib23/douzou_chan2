@@ -20,8 +20,6 @@ ja:
       submit: '投稿'
   layouts:
     application:
-      signin1: 'が'
-      signin2: ' 経由でサインインしています'
       
   time:
     formats:
