@@ -13,7 +13,6 @@
       [<%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>]
     </div>
   <% else %>
-    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, :class => "item" %>
-    <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path,   :class => "item" %>
+    <%= link_to t('home.index.signin'), home_signin_path, :class => "item" %>
   <% end %>
 </div>

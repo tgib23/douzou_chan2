@@ -3,6 +3,14 @@ ja:
     index:
       title: '銅像GO!'
       post_link: '新規投稿'
+      signin: 'サインイン'
+    signin:
+      merit_title: 'ログインで出来ること'
+      login_message: '下のボタンからログインしてください'
+      merit1: 'ポイントが溜まります'
+      merit2: '登録済みのポストの更新が出来ます'
+      merit3: 'ポストに対してコメントが投稿できます'
+      merit4: '広告が表示されません'
   users:
     show:
       edit_user: 'ニックネームの変更'

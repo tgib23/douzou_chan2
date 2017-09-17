@@ -25,6 +25,14 @@ en:
     index:
       title: 'Dozo GO!'
       post_link: 'Post New'
+      signin: 'Signin'
+    signin:
+      merit_title: 'Why Signin?'
+      login_message: 'Login from the buttons below'
+      merit1: 'Get Points'
+      merit2: 'Update existing Posts'
+      merit3: 'Comment on Posts'
+      merit4: 'No Ads!'
   users:
     show:
       edit_user: 'Edit Nickname'

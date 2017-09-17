@@ -1,0 +1,37 @@
+<br>
+<br>
+<br>
+<div class="signin_check">
+<% if user_signed_in? %>
+  <% if current_user.provider == "facebook" %>
+    <i class="facebook icon"></i>
+  <% else current_user.provider == "twitter" %>
+    <i class="twitter icon"></i>
+  <% end %>
+  <%= link_to current_user.nickname, current_user %>
+<% else %>
+
+  <%= t('home.signin.login_message') %>
+  <div id="fw-login-button">
+    <%= link_to '<i class="facebook icon"></i> Facebook'.html_safe, user_facebook_omniauth_authorize_path,  :class => "ui left floated facebook button" %>
+  </div>
+
+  <div id="tw-login-button">
+    <%= link_to '<i class="twitter icon"></i> Twitter'.html_safe, user_twitter_omniauth_authorize_path,   :class => "ui twitter button" %>
+  </div>
+<% end %>
+</div>
+
+
+<div class="signin_merit">
+  <h1><%= t('home.signin.merit_title') %></h1>
+  <h3><%= t('home.signin.merit1') %></h3>
+  <div class="ui section divider"></div>
+  <h3><%= t('home.signin.merit2') %></h3>
+  <div class="ui section divider"></div>
+  <h3><%= t('home.signin.merit3') %></h3>
+  <div class="ui section divider"></div>
+  <h3><%= t('home.signin.merit4') %></h3>
+
+</div>
+

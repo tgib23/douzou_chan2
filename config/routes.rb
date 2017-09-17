@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope "(:locale)" do
     resources :pics
     get 'home/index'
+    get 'home/signin'
 
     get "home", to: "home#index", as: "user_root"
     root 'home#index'
