@@ -45,6 +45,26 @@
   </p>
 <% end %>
 </div>
+
+<% if user_signed_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="comment_form">
+        <%= render 'shared/comment_form' %>
+      </section>
+    </aside>
+  </div>
+<% end %>
+
+<div class="col-md-8">
+  <h3>Comments (<%= @comments.count %>)</h3>
+  <ol class="comments">
+    <%= render @comments %>
+  </ol>
+  <%= will_paginate @comments %>
+</div>
+
+
 <%#= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 

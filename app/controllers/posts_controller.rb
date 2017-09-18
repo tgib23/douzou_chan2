@@ -21,12 +21,14 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
     if user_signed_in?
       @user = current_user
+      @comment = current_user.comments.build
+      @comment.post_id = @post.id
     else
       @user = User.find_by( uid: 1)
     end
-    @post = Post.find(params[:id])
     @pics = @post.pics.all
     @hash = Gmaps4rails.build_markers(@post) do |post, marker|
       marker.lat post.latitude
@@ -35,6 +37,7 @@ class PostsController < ApplicationController
       marker.json({title: post.name})
     end
     @nearby_posts = nearby_posts(@post)
+    @comments = @post.comments.paginate(page: params[:page])
   end
 
   def edit

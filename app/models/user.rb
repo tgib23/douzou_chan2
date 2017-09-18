@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter]
   has_many :posts
+  has_many :comments
   before_save { self.email = email.downcase }
   validates :email, uniqueness: { case_sensitive: false }
   validates :nickname, presence: true

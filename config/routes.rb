@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     get "posts/:id", to: 'posts#show'
     patch 'posts/:id', controller: 'posts', action: :update
     resources :contributions, only: [ :index, :show, :edit, :new, :update ]
+    resources :comments,          only: [:create, :destroy]
   end
 end
