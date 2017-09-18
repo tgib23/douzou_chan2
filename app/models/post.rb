@@ -12,5 +12,6 @@ class Post < ApplicationRecord
   validates :address_ja, presence: true
 
   has_many :pics
+  has_many :comments
   accepts_nested_attributes_for :pics
 end
