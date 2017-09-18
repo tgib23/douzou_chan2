@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
+  before_action :admin_user,   only: :destroy
+  ADMIN_USER_ID = 2
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -13,7 +15,6 @@ puts "comment.post id is #{@comment.post_id}"
   end
 
   def destroy
-    @comment = current_user.comments.find_by(id: params[:id])
     post_id = @comment.post_id
     @comment.destroy
     flash[:success] = "Comment deleted"
@@ -24,5 +25,10 @@ puts "comment.post id is #{@comment.post_id}"
 
     def comment_params
       params.require(:comment).permit(:content, :post_id, :user_id)
+    end
+
+    def admin_user
+      redirect_to root_url unless current_user.id == ADMIN_USER_ID
+      @comment = current_user.comments.find_by(id: params[:id])
     end
 end
