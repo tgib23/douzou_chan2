@@ -13,6 +13,11 @@ puts "comment.post id is #{@comment.post_id}"
   end
 
   def destroy
+    @comment = current_user.comments.find_by(id: params[:id])
+    post_id = @comment.post_id
+    @comment.destroy
+    flash[:success] = "Comment deleted"
+    redirect_to controller: 'posts', action: 'show', id: @comment.post_id
   end
 
   private
