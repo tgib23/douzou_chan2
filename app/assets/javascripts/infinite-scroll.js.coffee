@@ -1,5 +1,9 @@
 $ ->
-  content = $('#content')    # where to load new content
+  content = $('#content').masonry({    # where to load new content
+    itemSelector: '.box',
+    columnWidth: 100,
+    gutterWidth: 40
+  });
   viewMore = $('#view-more') # tag containing the "View More" link
 
   isLoadingNextPage = false  # keep from loading two pages at once
