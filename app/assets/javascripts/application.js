@@ -17,6 +17,7 @@
 //= require gmaps/google
 // Loads all Semantic javascripts
 //= require semantic-ui
+//= require masonry/jquery.masonry
 
 $(function(){
   $('.ui.dropdown').dropdown();
