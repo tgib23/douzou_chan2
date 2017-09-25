@@ -19,9 +19,14 @@
   <%= link_to "Post Edit", edit_post_path %>
 <% end %>
 
-<% @pics.each do |p| %>
-  <%= image_tag p.avatar_url %>
-  <%= link_to "Edit Attachment", edit_pic_path(p) %>
+<div id="content">
+  <%= render(partial: 'pics', collection: @pics) %>
+</div>
+
+<% unless @pics.current_page == @pics.total_pages %>
+  <p id="view-more">
+    <%= link_to('View More', url_for(page: @pics.current_page + 1), remote: true, :class => "ui button") %>
+  </p>
 <% end %>
 
 <div style='width: 800px;'>

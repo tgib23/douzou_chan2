@@ -1,0 +1,8 @@
+// views/home/index.js.erb
+$('#content').append("<%=j render(partial: 'show_post', collection: @show_post, format: 'html') %>");
+
+<% if @show_post.current_page == @show_post.total_pages %>
+  $('#view-more').remove();
+<% else %>
+  $('#view-more a').attr('href', '<%= url_for(page: @show_post.current_page + 1) %>');
+<% end %>
