@@ -1,4 +1,4 @@
-// views/posts/index.js.erb
+// views/home/index.js.erb
 $('#content').append("<%=j render(partial: 'show_post', collection: @show_post, format: 'html') %>");
 
 <% if @show_post.current_page == @show_post.total_pages %>

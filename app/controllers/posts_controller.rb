@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     else
       @user = User.find_by( uid: 1)
     end
-    @pics = @post.pics.all
+    @pics = @post.pics.paginate(page: params[:page], per_page: 5).order('created_at DESC')
     @hash = Gmaps4rails.build_markers(@post) do |post, marker|
       marker.lat post.latitude
       marker.lng post.longitude
