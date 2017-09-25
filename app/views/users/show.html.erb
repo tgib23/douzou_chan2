@@ -4,7 +4,11 @@
     <aside class="col-md-4">
       <section class="user_info">
         <h1>
-          <%= gravatar_for @user %>
+          <% if @user.image.url.nil? %>
+            <%= gravatar_for @user %>
+          <% else %>
+            <%= image_tag @user.image.thumb.url %>
+          <% end %>
           <%= @user.uid %>
         </h1>
         <% if user_signed_in? && @user.id == current_user.id %>

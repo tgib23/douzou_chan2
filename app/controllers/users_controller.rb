@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :nickname, :password,
-                                   :password_confirmation, :banned)
+                                   :password_confirmation, :banned, :image)
     end
 
     # Confirms an admin user.
