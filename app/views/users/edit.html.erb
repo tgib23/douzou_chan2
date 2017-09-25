@@ -8,6 +8,7 @@
 
       <%= f.label :name %>
       <%= f.text_field :nickname, class: 'form-control' %>
+      <%= f.file_field :image  %>
       <% if @control_ban %>
         <%= f.label :not_ban_this_user %>
         <%= f.radio_button :banned, false, class: 'form-control' %>
