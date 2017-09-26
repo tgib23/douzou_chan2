@@ -39,6 +39,12 @@ class PostsController < ApplicationController
       marker.json({title: post.name})
     end
     @nearby_posts = nearby_posts(@post)
+    @nearby_hash= Gmaps4rails.build_markers(@nearby_posts) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.name
+      marker.json({title: post.name})
+    end
     @comments = @post.comments.paginate(page: params[:page])
   end
 
