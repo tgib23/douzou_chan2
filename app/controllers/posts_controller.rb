@@ -44,6 +44,7 @@ class PostsController < ApplicationController
       marker.lng post.longitude
       marker.infowindow post.name
       marker.json({title: post.name})
+      marker.picture({url: 'http://maps.google.com/mapfiles/ms/icons/blue.png', width: 48, height: 48})
     end
     @comments = @post.comments.paginate(page: params[:page])
   end

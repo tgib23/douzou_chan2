@@ -36,7 +36,7 @@
 <script type="text/javascript">
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%=raw @hash.to_json %>, { fillColor: '#00ff'});
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
       markers << handler.addMarkers(<%=raw @nearby_hash.to_json %>, { fillColor: '#00ff', opacity: 0.5});
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
