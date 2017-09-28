@@ -1,9 +1,14 @@
 class HomeController < ApplicationController
+  ADMIN_USER_ID = 2
   def index
     get_and_show_posts
   end
 
   def siginin
+  end
+
+  def admin
+    redirect_to root_url unless user_signed_in? && current_user.id == ADMIN_USER_ID
   end
 
   private
