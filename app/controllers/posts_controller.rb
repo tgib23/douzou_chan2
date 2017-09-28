@@ -7,7 +7,6 @@ class PostsController < ApplicationController
   MAJOR_MINOR_THRESHOLD    = 10000 # temporal
   NEW_POST_PT_GOOGLE_MAJOR = 500
   NEW_POST_PT_GOOGLE_MINOR = 1000
-  ADMIN_USER_ID = 2
 
   def new
     if user_signed_in?
@@ -26,7 +25,7 @@ class PostsController < ApplicationController
     @admin = false
     if user_signed_in?
       @user = current_user
-      @admin = true if @user.id == ADMIN_USER_ID
+      @admin = true if @user.id == Settings.root.user_id
       @comment = current_user.comments.build
     else
       @user = User.find_by( uid: 1)
