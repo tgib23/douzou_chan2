@@ -4,7 +4,7 @@ class ContributionsController < ApplicationController
   # GET /contributions
   # GET /contributions.json
   def index
-    redirect_to root_url unless user_signed_in? && current_user.id == Settings.root.user_id
+    redirect_to root_url unless admin_user?
     @contributions = Contribution.all
     @show_edit = show_edit?
   end

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def admin
-    redirect_to root_url unless user_signed_in? && current_user.id == Settings.root.user_id
+    redirect_to root_url unless admin_user?
   end
 
   private

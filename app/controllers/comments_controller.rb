@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :admin_user,   only: :destroy
 
   def index
-    redirect_to root_url unless user_signed_in? && current_user.id == Settings.root.user_id
+    redirect_to root_url unless admin_user?
     @comments = Comment.all
   end
 
