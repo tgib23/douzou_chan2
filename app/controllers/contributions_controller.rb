@@ -1,10 +1,10 @@
 class ContributionsController < ApplicationController
   before_action :set_contribution, only: [:show, :edit, :update, :destroy]
-  ADMIN_USER_ID = 2
 
   # GET /contributions
   # GET /contributions.json
   def index
+    redirect_to root_url unless admin_user?
     @contributions = Contribution.all
     @show_edit = show_edit?
   end
@@ -22,7 +22,7 @@ class ContributionsController < ApplicationController
 
   # GET /contributions/1/edit
   def edit
-    if !user_signed_in? || current_user.id != ADMIN_USER_ID
+    if !user_signed_in? || current_user.id != Settings.root.user_id
       redirect_to contributions_path
     end
   end
@@ -79,7 +79,7 @@ class ContributionsController < ApplicationController
     end
 
     def show_edit?
-      return true if user_signed_in? && current_user.id == ADMIN_USER_ID
+      return true if user_signed_in? && current_user.id == Settings.root.user_id
 	  return false
     end
 

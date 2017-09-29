@@ -6,6 +6,10 @@ class HomeController < ApplicationController
   def siginin
   end
 
+  def admin
+    redirect_to root_url unless admin_user?
+  end
+
   private
     def get_and_show_posts
       @show_post = Post.paginate(page: params[:page], per_page: 5).order('created_at DESC')

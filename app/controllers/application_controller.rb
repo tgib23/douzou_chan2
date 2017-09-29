@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def admin_user?
+    user_signed_in? && current_user.id == Settings.root.user_id
+  end
 end
