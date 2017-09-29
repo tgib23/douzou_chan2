@@ -2,6 +2,10 @@ class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :admin_user,   only: :destroy
 
+  def index
+    @comments = Comment.all
+  end
+
   def create
     @comment = current_user.comments.build(comment_params)
 puts "comment.post id is #{@comment.post_id}"

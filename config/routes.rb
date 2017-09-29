@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     root 'home#index'
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-    resources :users, only: [ :show, :edit, :update ]
-    resources :posts, only: [ :create, :destroy, :new, :edit ]
+    resources :users, only: [ :show, :edit, :update, :index ]
+    resources :posts, only: [ :create, :destroy, :new, :edit, :index ]
     get "posts/get_geo"
     get "posts/:id", to: 'posts#show'
     patch 'posts/:id', controller: 'posts', action: :update
     resources :contributions, only: [ :index, :show, :edit, :new, :update ]
-    resources :comments,          only: [:create, :destroy]
+    resources :comments,          only: [:create, :destroy, :index]
   end
 end

@@ -8,6 +8,10 @@ class PostsController < ApplicationController
   NEW_POST_PT_GOOGLE_MAJOR = 500
   NEW_POST_PT_GOOGLE_MINOR = 1000
 
+  def index
+    @posts = Post.all
+  end
+
   def new
     if user_signed_in?
       @post = current_user.posts.build

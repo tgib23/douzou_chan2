@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nickname</th>
+      <th>Provider</th>
+      <th>SumPoint</th>
+      <th>banned</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.nickname, user_path(user) %></td>
+        <td><%= user.provider %></td>
+        <td><%= user.sum_point%></td>
+        <td><%= user.banned %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
