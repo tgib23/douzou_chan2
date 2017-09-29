@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
+    redirect_to root_url unless user_signed_in? && current_user.id == Settings.root.user_id
     @users = User.all
   end
 

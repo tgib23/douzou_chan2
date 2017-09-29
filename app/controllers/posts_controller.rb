@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   NEW_POST_PT_GOOGLE_MINOR = 1000
 
   def index
+    redirect_to root_url unless user_signed_in? && current_user.id == Settings.root.user_id
     @posts = Post.all
   end
 

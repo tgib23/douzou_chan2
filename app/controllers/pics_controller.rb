@@ -4,6 +4,7 @@ class PicsController < ApplicationController
   # GET /pics
   # GET /pics.json
   def index
+    redirect_to root_url unless user_signed_in? && current_user.id == Settings.root.user_id
     @pics = Pic.all
   end
 
