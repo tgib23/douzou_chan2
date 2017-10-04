@@ -25,6 +25,7 @@ ja:
       name_field: '人物名'
       creator_field: '製作者'
       year_field: '制作年'
+      wikipedia_name_field: 'Wikipedia名'
       submit: '投稿'
   layouts:
     application:

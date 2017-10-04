@@ -4,6 +4,10 @@
     <%= f.text_field :name, :placeholder => t('shared._post_form.name_field') %>
     <%= f.text_field :author, :placeholder => t('shared._post_form.creator_field') %>
     <%= f.text_field :year, :placeholder => t('shared._post_form.year_field') %>
+    <% if @user.id == Settings.root.user_id %>
+      <%= f.text_field :wikipedia_name, :placeholder => t('shared._post_form.year_field') %>
+    <% end %>
+
 
     <%= f.hidden_field :latitude %>
     <%= f.hidden_field :longitude %>
