@@ -257,7 +257,7 @@ class PostsController < ApplicationController
                                    :country_ja, :administrative_area_level_1_ja, :address_ja,
                                    :locality_ja, :ward_ja, :sublocality_level_1_ja, :sublocality_level_2_ja,
                                    :sublocality_level_3_ja, :sublocality_level_4_ja, :sublocality_level_5_ja,
-                                   :year, :link, :author, :user_id,
+                                   :year, :link, :author, :user_id, :wikipedia_name,
                                    pics: [:id, :post_id, :avatar])
     end
 

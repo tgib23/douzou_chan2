@@ -47,6 +47,7 @@ en:
       name_field: 'Name of the Statue'
       creator_field: 'Creator'
       year_field: 'Year'
+      wikipedia_name_field: 'Wikipedia_name'
       submit: 'Post'
   layouts:
     application:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925133916) do
+ActiveRecord::Schema.define(version: 20171004141855) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170925133916) do
     t.string   "sublocality_level_3_ja"
     t.string   "sublocality_level_4_ja"
     t.string   "sublocality_level_5_ja"
+    t.string   "wikipedia_name"
     t.index ["latitude"], name: "index_posts_on_latitude"
     t.index ["longitude"], name: "index_posts_on_longitude"
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
