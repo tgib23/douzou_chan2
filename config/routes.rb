@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :users, only: [ :show, :edit, :update, :index ]
     resources :posts, only: [ :create, :destroy, :new, :edit, :index ]
     get "posts/get_geo"
+    get "posts/get_wiki"
     get "posts/:id", to: 'posts#show'
     patch 'posts/:id', controller: 'posts', action: :update
     resources :contributions, only: [ :index, :show, :edit, :new, :update ]

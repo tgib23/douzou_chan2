@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<%= javascript_include_tag 'get-wiki' %>
 
 <p>
   <strong><%= t '.title' %></strong>
@@ -43,6 +44,8 @@
       handler.getMap().setZoom(18);
     });
 </script>
+
+<div id="wiki_summary">Wikipedia取得中</div>
 
 <div id="nearby_posts">
 <%= t '.nearby_posts' %>
