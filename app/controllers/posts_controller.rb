@@ -252,17 +252,7 @@ class PostsController < ApplicationController
     if @post.wikipedia_name.nil?
       @wiki_summary = ""
     else
-      if !alphabet?(@post.wikipedia_name)
-         Wikipedia.configure {
-           domain 'ja.wikipedia.org'
-           path   'w/api.php'
-         }
-      else
-         Wikipedia.configure {
-           domain 'en.wikipedia.org'
-           path   'w/api.php'
-         }
-      end
+      wiki_conf(@post.wikipedia_name)
 
       @wiki_summary = Wikipedia.find(@post.wikipedia_name).summary
       @wiki_summary = @wiki_summary.gsub(/\n/,"")
@@ -300,19 +290,9 @@ class PostsController < ApplicationController
       if post.name.empty?
         NEW_POST_PT_NO_NAME
       else
-        # algorithm should be implemented later
-        if !alphabet?(post.name)
-           Wikipedia.configure {
-             domain 'ja.wikipedia.org'
-             path   'w/api.php'
-           }
-        else
-           Wikipedia.configure {
-             domain 'en.wikipedia.org'
-             path   'w/api.php'
-           }
-        end
+        wiki_conf(post.name)
 
+        # algorithm should be implemented later
         if Wikipedia.find("#{post.name}").summary.nil?
           results = GoogleCustomSearchApi.search("#{post.name}")
           if !results.nil? && results.queries.request[0].totalResults.to_i > MAJOR_MINOR_THRESHOLD
@@ -337,6 +317,20 @@ class PostsController < ApplicationController
 
     def alphabet?(s)
       (s =~ /^[A-Za-z\s\!-\/\:-\?\[-\_\{-\}]+$/) == 0
+    end
+
+	def wiki_conf(name)
+      if !alphabet?(name)
+         Wikipedia.configure {
+           domain 'ja.wikipedia.org'
+           path   'w/api.php'
+         }
+      else
+         Wikipedia.configure {
+           domain 'en.wikipedia.org'
+           path   'w/api.php'
+         }
+      end
     end
 
 end
