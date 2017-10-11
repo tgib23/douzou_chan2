@@ -1,13 +1,13 @@
-<%= link_to t('home.index.post_link'), new_post_path %>
-
 
 <!-- views/show_post/index.html.erb -->
 <div id="content">
   <%= render(partial: 'show_post', collection: @show_post) %>
 </div>
 
+<br/>
+
 <% unless @show_post.current_page == @show_post.total_pages %>
-  <p id="view-more">
+  <div class="navigation" id="view-more">
     <%= link_to('View More', url_for(page: @show_post.current_page + 1), remote: true, :class => "ui button") %>
-  </p>
+  </div>
 <% end %>

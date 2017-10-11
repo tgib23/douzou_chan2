@@ -53,3 +53,60 @@ aside {
 .gravatar_edit {
   margin-top: 15px;
 }
+
+body {
+  padding-top: 60px;
+}
+
+.container {
+  padding-top: 50px;
+  padding-left: 50px;
+  margin-bottom: 150px;
+}
+.copyright{
+  border-top: 1px solid #eaeaea;
+  padding-top: 50px;
+}
+h1 {
+  font-size: .4em;
+  letter-spacing: 100px;
+  margin-bottom: 3px;
+  margin-top: 0px;
+  margin-left: 20px;
+}
+
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  a {
+    color: #555;
+    &:hover {
+      color: #222;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+.navigation {
+  clear: both;
+  padding: 20px;
+  text-align: center;
+}
+.navigation a{
+  color: #fff;
+  text-decoration: none;
+}
+
