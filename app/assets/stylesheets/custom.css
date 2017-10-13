@@ -56,11 +56,14 @@ aside {
 
 body {
   padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .container {
   padding-top: 50px;
-  padding-left: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 50px;
   margin-bottom: 150px;
 }
 .copyright{
