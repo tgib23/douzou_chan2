@@ -1,5 +1,7 @@
 // views/home/index.js.erb
-$('#content').append("<%=j render(partial: 'show_post', collection: @show_post, format: 'html') %>");
+$('#content').append("<%=j render(partial: 'show_post', collection: @show_post, format: 'html') %>").imagesLoaded( function() {
+  $('#content').masonry('reload');
+});
 
 <% if @show_post.current_page == @show_post.total_pages %>
   $('#view-more').remove();

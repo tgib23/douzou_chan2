@@ -18,6 +18,7 @@
 // Loads all Semantic javascripts
 //= require semantic-ui
 //= require masonry/jquery.masonry
+//= require masonry/jquery.imagesloaded.min
 
 $(function(){
   $('.ui.dropdown').dropdown();
