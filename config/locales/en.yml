@@ -27,6 +27,7 @@ en:
       post_link: 'Post New'
       signin: 'Signin'
       viewmore: 'View More'
+      nearposts: 'Near'
     signin:
       merit_title: 'Why Signin?'
       login_message: 'Login from the buttons below'
@@ -46,6 +47,8 @@ en:
       creator: 'Creator'
       address: 'Address'
       nearby_posts: 'Nearby Posts'
+    new:
+      searching: 'Searching Current Position'
   shared:
     _post_form:
       name_field: 'Name of the Statue'
