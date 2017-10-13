@@ -1,6 +1,8 @@
 
 <%= javascript_include_tag 'current-position' %>
 
+<%= link_to 'wider range', controller: 'home', action: 'near',
+            scale: @scale+1 %>
 <div id="nearby_map" style='width: 800px; height: 400px;'></div>>
 <div id="nearby_posts"></div>
 

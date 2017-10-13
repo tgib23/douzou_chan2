@@ -29,11 +29,16 @@ $(document).ready( ->
           else message = err.message
  
     postData = ->
+        url_analysis = window.location.href.split("?")
+        scale = 1
+        if url_analysis.length == 2
+          scale = url_analysis[1].split("=").pop();
         console.log myPosition[0]
         console.log myPosition[1]
+        console.log scale
         $.ajax({
             url: "/home/search_nearby",
-            data: 'lat=' + myPosition[0] + '&lon=' + myPosition[1]
+            data: 'lat=' + myPosition[0] + '&lon=' + myPosition[1] + '&scale=' + scale
         })
  
     getCurrent()
