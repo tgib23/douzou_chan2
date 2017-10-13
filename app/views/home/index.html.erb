@@ -9,6 +9,6 @@
 
 <% unless @show_post.current_page == @show_post.total_pages %>
   <div class="navigation" id="view-more">
-    <%= link_to('View More', url_for(page: @show_post.current_page + 1), remote: true, :class => "ui button") %>
+    <%= link_to t('home.index.viewmore'), url_for(page: @show_post.current_page + 1), remote: true, :class => "ui button" %>
   </div>
 <% end %>
