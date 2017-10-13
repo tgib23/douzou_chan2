@@ -4,6 +4,7 @@ ja:
       title: '銅像GO!'
       post_link: '新規投稿'
       signin: 'サインイン'
+      viewmore: 'もっと見る'
     signin:
       merit_title: 'ログインで出来ること'
       login_message: '下のボタンからログインしてください'
@@ -11,6 +12,9 @@ ja:
       merit2: '登録済みのポストの更新が出来ます'
       merit3: 'ポストに対してコメントが投稿できます'
       merit4: '広告が表示されません'
+    footer:
+      rule: 'ご利用の手引'
+      contact: 'ご連絡'
   users:
     show:
       edit_user: 'ニックネームの変更'

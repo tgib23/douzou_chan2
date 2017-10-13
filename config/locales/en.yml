@@ -26,6 +26,7 @@ en:
       title: 'Dozo GO!'
       post_link: 'Post New'
       signin: 'Signin'
+      viewmore: 'View More'
     signin:
       merit_title: 'Why Signin?'
       login_message: 'Login from the buttons below'
@@ -33,6 +34,9 @@ en:
       merit2: 'Update existing Posts'
       merit3: 'Comment on Posts'
       merit4: 'No Ads!'
+    footer:
+      rule: 'HowTo'
+      contact: 'Contact'
   users:
     show:
       edit_user: 'Edit Nickname'
