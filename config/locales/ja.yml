@@ -6,6 +6,7 @@ ja:
       signin: 'サインイン'
       viewmore: 'もっと見る'
       nearposts: '近くの銅像'
+      point: 'ポイント'
     signin:
       merit_title: 'ログインで出来ること'
       login_message: '下のボタンからログインしてください'
