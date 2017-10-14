@@ -5,6 +5,7 @@ ja:
       post_link: '新規投稿'
       signin: 'サインイン'
       viewmore: 'もっと見る'
+      nearposts: '近くの銅像'
     signin:
       merit_title: 'ログインで出来ること'
       login_message: '下のボタンからログインしてください'
@@ -24,6 +25,8 @@ ja:
       creator: '製作者'
       address: '所在地'
       nearby_posts: '近隣の銅像'
+    new:
+      searching: '現在地取得中'
   shared:
     _post_form:
       name_field: '人物名'

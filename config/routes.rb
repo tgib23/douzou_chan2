@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get 'home/index'
     get 'home/signin'
     get 'home/admin'
+    get 'home/near'
+    get 'home/search_nearby'
 
     get "home", to: "home#index", as: "user_root"
     root 'home#index'
