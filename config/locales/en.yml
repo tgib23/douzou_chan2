@@ -28,6 +28,7 @@ en:
       signin: 'Signin'
       viewmore: 'View More'
       nearposts: 'Near'
+      point: 'Point'
     signin:
       merit_title: 'Why Signin?'
       login_message: 'Login from the buttons below'

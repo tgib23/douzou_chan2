@@ -2,6 +2,9 @@
   <%= link_to t('home.index.title'), root_path, :class => "active item" %>
 
   <div class="right menu">
+    <% if user_signed_in? %>
+      <div class="point"><%= link_to current_user.sum_point, current_user %> <%= t('home.index.point') %></div>
+    <% end %>
     <div class="ui language dropdown right floating icon item" id="languages" data-content="Select Language">
       <i class="world icon"></i>
       <div class="menu">
