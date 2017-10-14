@@ -1,12 +1,12 @@
 require 'wikipedia'
 
 class PostsController < ApplicationController
-  NEW_POST_PT_NO_NAME = 50
-  NEW_POST_PT_WIKI    = 100
-  UPDATE_POST_PT      = 10
-  MAJOR_MINOR_THRESHOLD    = 10000 # temporal
-  NEW_POST_PT_GOOGLE_MAJOR = 500
-  NEW_POST_PT_GOOGLE_MINOR = 1000
+  NEW_POST_PT_NO_NAME      = 50
+  UPDATE_POST_PT           = 10
+  NEW_POST_PT_NO_WIKI      = 1000
+  NEW_POST_PT_WIKI_MAJOR   = 500
+  NEW_POST_PT_WIKI_MINOR   = 800
+  MAJOR_MINOR_THRESHOLD    = 1000 # temporal
 
   def index
     redirect_to root_url unless admin_user?
@@ -293,18 +293,15 @@ class PostsController < ApplicationController
         wiki_conf(post.name)
 
         # algorithm should be implemented later
-        if Wikipedia.find("#{post.name}").summary.nil?
-          results = GoogleCustomSearchApi.search("#{post.name}")
-          if !results.nil? && results.queries.request[0].totalResults.to_i > MAJOR_MINOR_THRESHOLD
-            puts "koko1", results.queries.request[0]
-            NEW_POST_PT_GOOGLE_MAJOR
-          else
-            puts "koko2", results.queries.request[0]
-            NEW_POST_PT_GOOGLE_MINOR
-          end
+        wiki_results = Wikipedia.find("#{post.name}").summary
+        if wiki_results.nil?
+          NEW_POST_PT_NO_WIKI
         else
-          puts "koko3"
-          NEW_POST_PT_WIKI
+		  if wiki_results > MAJOR_MINOR_THRESHOLD
+            NEW_POST_PT_WIKI_MAJOR
+          else
+            NEW_POST_PT_WIKI_MINOR
+          end
         end
       end
     end
