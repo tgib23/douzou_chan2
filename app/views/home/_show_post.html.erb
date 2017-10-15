@@ -1,4 +1,4 @@
 <%= div_for(show_post, class: "box") do %>
   <%= show_post.name %>
-  <%= image_tag show_post.pics[0].avatar_url %>
+  <%= link_to image_tag(show_post.pics[0].avatar_url), url_for(controller: :posts, action: :show, id: show_post.id) %>
 <% end %>
