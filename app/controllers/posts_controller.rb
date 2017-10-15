@@ -122,7 +122,11 @@ class PostsController < ApplicationController
         @contribution = Contribution.new
         @contribution.user_id = @user.id
         @contribution.post_id = @post.id
-        point_of_this_post    = calc_new_pt(@post)
+        point_of_this_post = calc_new_pt(@post)
+        if point_of_this_post == NEW_POST_PT_WIKI_MINOR || point_of_this_post == NEW_POST_PT_WIKI_MAJOR
+          @post.wikipedia_name = @post.name
+          @post.save
+        end
         @contribution.point   = point_of_this_post
         @contribution.save
         @user.sum_point       += point_of_this_post
@@ -304,7 +308,7 @@ class PostsController < ApplicationController
         if wiki_results.nil?
           NEW_POST_PT_NO_WIKI
         else
-		  if wiki_results > MAJOR_MINOR_THRESHOLD
+          if wiki_results.size > MAJOR_MINOR_THRESHOLD
             NEW_POST_PT_WIKI_MAJOR
           else
             NEW_POST_PT_WIKI_MINOR
@@ -323,7 +327,7 @@ class PostsController < ApplicationController
       (s =~ /^[A-Za-z\s\!-\/\:-\?\[-\_\{-\}]+$/) == 0
     end
 
-	def wiki_conf(name)
+    def wiki_conf(name)
       if !alphabet?(name)
          Wikipedia.configure {
            domain 'ja.wikipedia.org'
