@@ -1,7 +1,7 @@
 require 'wikipedia'
 
 class PostsController < ApplicationController
-  before_action :set_post, only: [:destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   NEW_POST_PT_NO_NAME      = 50
   UPDATE_POST_PT           = 10
@@ -28,7 +28,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @admin = false
     if user_signed_in?
       @user = current_user
@@ -58,17 +57,14 @@ class PostsController < ApplicationController
   def edit
     if user_signed_in?
       @user = current_user
-      @post = Post.find(params[:id])
       @pic = @post.pics.build
     else
-      @post = Post.find(params[:id])
       flash[:error] = "You have to login for Update the post"
       redirect_to @post
     end
   end
 
   def update
-    @post = Post.find(params[:id])
     if user_signed_in?
       @user = current_user
     else
