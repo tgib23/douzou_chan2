@@ -17,6 +17,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td><%= post.id %></td>
         <td><%= post.name %></td>
         <td><%= post.address %></td>
         <td><%= post.author %></td>

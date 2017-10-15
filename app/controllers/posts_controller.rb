@@ -1,6 +1,8 @@
 require 'wikipedia'
 
 class PostsController < ApplicationController
+  before_action :set_post, only: [:destroy]
+
   NEW_POST_PT_NO_NAME      = 50
   UPDATE_POST_PT           = 10
   NEW_POST_PT_NO_WIKI      = 1000
@@ -142,6 +144,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.destroy
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   def get_geo
@@ -275,6 +282,10 @@ class PostsController < ApplicationController
                                    :sublocality_level_3_ja, :sublocality_level_4_ja, :sublocality_level_5_ja,
                                    :year, :link, :author, :user_id, :wikipedia_name,
                                    pics: [:id, :post_id, :avatar])
+    end
+
+    def set_post
+      @post = Post.find(params[:id])
     end
 
     def extract_long_name (r)
