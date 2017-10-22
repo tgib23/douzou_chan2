@@ -12,3 +12,13 @@
     <%= link_to t('home.index.viewmore'), url_for(page: @show_post.current_page + 1), remote: true, :class => "ui button" %>
   </div>
 <% end %>
+
+<div class="ui horizontal list">
+  <% @hot_users.each do |hot_user| %>
+    <div class="item">
+      <%= link_to image_tag(hot_user.image.thumb.url), url_for(controller: :users, action: :show, id: hot_user.id), :class => "ui circular image" %>
+      <div class="user-info">
+        <div class="ui sub header"><%= hot_user.nickname %></div> <%= hot_user.sum_point %></div>
+    </div>
+  <% end %>
+</div>
