@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     get_and_show_posts
+    hot_users
   end
 
   def siginin
@@ -14,8 +15,8 @@ class HomeController < ApplicationController
     if params[:scale].nil?
       @scale = 1
     else
-	  @scale = params[:scale].to_i
-	end
+      @scale = params[:scale].to_i
+    end
   end
 
   def search_nearby
@@ -45,5 +46,10 @@ class HomeController < ApplicationController
           format.html
           format.js
       end
+    end
+
+    # the logic should be updated
+    def hot_users
+      @hot_users = User.order("RANDOM()").limit(3).where.not(uid: "1")
     end
 end

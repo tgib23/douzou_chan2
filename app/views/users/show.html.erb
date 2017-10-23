@@ -7,7 +7,7 @@
           <% if @user.image.url.nil? %>
             <%= gravatar_for @user %>
           <% else %>
-            <%= image_tag @user.image.thumb.url %>
+            <%= image_tag @user.image.thumb.url, :class => "ui circular image" %>
           <% end %>
           <%= @user.uid %>
         </h1>
