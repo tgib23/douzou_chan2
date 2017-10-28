@@ -100,6 +100,10 @@ class PostsController < ApplicationController
     if params[:pics]
       params[:pics]['avatar'].each do |a|
         @pic = @post.pics.create!(:avatar => a, :user_id => @user.id)
+        pic_like = PicLike.new
+        pic_like.key = "#{@pic.id}_all"
+        pic_like.value = ""
+        pic_like.save
       end
     end
 
@@ -315,6 +319,25 @@ class PostsController < ApplicationController
     end
   end
 
+  def like_pic
+
+    if user_signed_in? && current_user.id == params[:user_id].to_i
+	  @pic_id = params[:id]
+      all_key = "#{params[:id]}_all"
+      user_key = "#{params[:id]}_#{current_user.id}"
+      @all = PicLike.find_by(key: all_key)
+      new_value = make_new_value(params[:user_id], @all.value)
+      @all.value = new_value
+      @all.save
+      @pic_like_count = @all.value.split(",").size
+
+      #user_key
+      @pic_user_like = PicLike.new
+      @pic_user_like.key = user_key
+      @pic_user_like.value = "1"
+      @pic_user_like.save
+    end
+  end
 
 
   private

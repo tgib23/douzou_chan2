@@ -1,4 +1,13 @@
 <!-- views/posts/_pics.html.erb -->
 <%= div_for(pics, class: "box") do %>
   <%= image_tag pics.avatar_url %>
+  Uploaded by <%= link_to User.find(pics.user_id).nickname, url_for(controller: :users, action: :show, id: pics.user_id) %>
+  <div id="pic-likes-<%= pics.id %>">
+    <%= PicLike.find_by(key: "#{pics.id}_all").value.split(",").size %> Likes
+  </div>
+  <% if PicLike.find_by(key: "#{pics.id}_#{current_user.id}").nil? %>
+    <div class="navigation" id="like-pic-<%= pics.id %>">
+      <%= link_to 'like', url_for(controller: :posts, action: :like_pic, id: pics.id, user_id: current_user.id ), remote: true, :class => "ui button" %>
+    </div>
+  <% end %>
 <% end %>
