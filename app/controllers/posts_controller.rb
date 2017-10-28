@@ -117,6 +117,10 @@ class PostsController < ApplicationController
       if !params[:pics].nil? && @post.save
         params[:pics]['avatar'].each do |a|
           @pic = @post.pics.create!(:avatar => a, :user_id => @user.id)
+          pic_like = PicLike.new
+          pic_like.key = "#{@pic.id}_all"
+          pic_like.value = ""
+          pic_like.save
         end
 
         @contribution = Contribution.new
@@ -131,6 +135,11 @@ class PostsController < ApplicationController
         @contribution.save
         @user.sum_point       += point_of_this_post
         @user.save
+
+        @post_like = PostLike.new
+        @post_like.key = "#{@post.id}_all"
+        @post_like.value = ""
+        @post_like.save
 
         flash[:success] = "Post created by #{@user.uid}"
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
