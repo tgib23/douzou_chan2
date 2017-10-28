@@ -52,6 +52,24 @@ class PostsController < ApplicationController
       marker.picture({url: 'http://maps.google.com/mapfiles/ms/icons/blue.png', width: 48, height: 48})
     end
     @comments = @post.comments.paginate(page: params[:page])
+    post_like_all_key = "#{@post.id}_all"
+    post_like_all_value = PostLike.find_by(key: post_like_all_key).value
+    if post_like_all_value.empty?
+      @like_count = 0
+      @like_by_current_user = false
+    else
+      @like_count = post_like_all_value.split(",").size
+      if user_signed_in?
+          post_like_user_key = "#{@post.id}_#{current_user.id}"
+        if PostLike.find_by(key: post_like_user_key).nil?
+          @like_by_current_user = false
+        else
+          @like_by_current_user = true
+        end
+      else
+        @like_by_current_user = false
+      end
+    end
   end
 
   def edit
@@ -110,7 +128,6 @@ class PostsController < ApplicationController
       @user = User.find_by( uid: 1)
     end
     @post = @user.posts.build(post_params)
-    puts "now in create #{@user.uid}"
 
 
     respond_to do |format|
@@ -279,6 +296,27 @@ class PostsController < ApplicationController
     end
   end
 
+  def like_post
+
+    if user_signed_in? && current_user.id == params[:user_id].to_i
+      all_key = "#{params[:id]}_all"
+      user_key = "#{params[:id]}_#{current_user.id}"
+      @all = PostLike.find_by(key: all_key)
+      new_value = make_new_value(params[:user_id], @all.value)
+      @all.value = new_value
+      @all.save
+      @like_count = @all.value.split(",").size
+
+      #user_key
+      @post_user_like = PostLike.new
+      @post_user_like.key = user_key
+      @post_user_like.value = "1"
+      @post_user_like.save
+    end
+  end
+
+
+
   private
 
     def post_params
@@ -348,6 +386,11 @@ class PostsController < ApplicationController
            path   'w/api.php'
          }
       end
+    end
+
+    def make_new_value(id, value)
+      arr = value.split(",").map(&:to_i)
+      arr.push(id.to_i).sort.join(',')
     end
 
 end

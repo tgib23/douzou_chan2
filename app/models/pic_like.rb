@@ -1,0 +1,2 @@
+class PicLike < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PostLike < ApplicationRecord
+end
