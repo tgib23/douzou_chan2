@@ -17,15 +17,20 @@
 </p>
 
 <p>
-  <strong>Likes</strong>
-  <div id="post-likes"><%= @like_count %></div>
-</p>
 
-<% if user_signed_in? && !@like_by_current_user %>
-  <div class="navigation" id="like-post">
-    <%= link_to 'like', url_for(controller: :posts, action: :like_post, id: @post.id, user_id: current_user.id ), remote: true, :class => "ui button" %>
+<div class="ui labeled button" tabindex="0">
+  <div id="like-post">
+    <% if user_signed_in? && !@like_by_current_user %>
+      <div class="ui red button"><i class="heart icon"></i> <%= link_to 'いいね', url_for(controller: :posts, action: :like_post, id: @post.id, user_id: current_user.id ), remote: true %></div>
+    <% else %>
+      <div class="ui disabled red button"><i class="heart icon"></i> いいね </div>
+    <% end %>
   </div>
-<% end %>
+  <a class="ui basic red left pointing label" id="post-likes">
+    <%= @like_count %>
+  </a>
+</div>
+</p>
 
 <% if @user.uid != Settings.root.user_id %>
   <%= link_to "Post Edit", edit_post_path %>
