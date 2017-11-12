@@ -16,7 +16,11 @@
 <div class="ui horizontal list">
   <% @hot_users.each do |hot_user| %>
     <div class="item">
-      <%= link_to image_tag(hot_user.image.thumb.url), url_for(controller: :users, action: :show, id: hot_user.id), :class => "ui circular image" %>
+      <% if hot_user.image.thumb.url.nil? %>
+        <%= link_to gravatar_for(hot_user), url_for(controller: :users, action: :show, id: hot_user.id), :class => "ui circular image" %>
+      <% else %>
+        <%= link_to image_tag(hot_user.image.thumb.url), url_for(controller: :users, action: :show, id: hot_user.id), :class => "ui circular image" %>
+      <% end %>
       <div class="user-info">
         <div class="ui sub header"><%= hot_user.nickname %></div> <%= hot_user.sum_point %></div>
     </div>
