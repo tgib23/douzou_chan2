@@ -38,3 +38,7 @@ $ rails console
 # cp <env_path>/.env ./
 # nohup pumactl start >> log/development.log &
 ```
+
+
+## debug note
+* picsが入っていないレコードがあるとホームページの表示がバグる
