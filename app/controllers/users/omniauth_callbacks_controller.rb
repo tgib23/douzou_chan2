@@ -11,6 +11,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :google
   end
 
+  def instagram
+    callback_from :google
+  end
+
   private
 
   def callback_from(provider)

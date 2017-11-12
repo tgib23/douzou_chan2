@@ -9,7 +9,7 @@
           <% else %>
             <%= image_tag @user.image.thumb.url, :class => "ui circular image" %>
           <% end %>
-          <%= @user.uid %>
+          <%= @user.nickname %>
         </h1>
         <% if user_signed_in? && @user.id == current_user.id %>
           <%= link_to t('users.show.edit_user'), edit_user_path(@user) %>

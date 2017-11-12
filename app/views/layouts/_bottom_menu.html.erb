@@ -10,6 +10,8 @@
         <i class="twitter icon"></i>
       <% elsif current_user.provider == "google_oauth2" %>
         <i class="google plus icon"></i>
+      <% elsif current_user.provider == "instagram" %>
+        <i class="instagram icon"></i>
       <% end %>
       <%= link_to current_user.nickname, current_user %>
       [<%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>]

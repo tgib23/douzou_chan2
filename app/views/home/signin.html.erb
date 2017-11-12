@@ -9,6 +9,8 @@
     <i class="twitter icon"></i>
   <% elsif current_user.provider == "google_oauth2" %>
     <i class="google plus icon"></i>
+  <% elsif current_user.provider == "instagram" %>
+    <i class="instagram icon"></i>
   <% end %>
   <%= link_to current_user.nickname, current_user %>
 <% else %>
@@ -19,11 +21,15 @@
   </div>
 
   <div id="tw-login-button">
-    <%= link_to '<i class="twitter icon"></i> Twitter'.html_safe, user_twitter_omniauth_authorize_path,   :class => "ui twitter button" %>
+    <%= link_to '<i class="twitter icon"></i> Twitter'.html_safe, user_twitter_omniauth_authorize_path,   :class => "ui left floated twitter button" %>
   </div>
 
   <div id="google-login-button">
-    <%= link_to '<i class="google plus icon"></i> Google'.html_safe, user_google_oauth2_omniauth_authorize_path,   :class => "ui google plus button" %>
+    <%= link_to '<i class="google plus icon"></i> Google'.html_safe, user_google_oauth2_omniauth_authorize_path,   :class => "ui left floated google plus button" %>
+  </div>
+
+  <div id="instagram-login-button">
+    <%= link_to '<i class="instagram icon"></i> Instagram'.html_safe, user_instagram_omniauth_authorize_path,   :class => "ui instagram button" %>
   </div>
 <% end %>
 </div>
