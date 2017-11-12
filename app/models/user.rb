@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2]
   has_many :posts
   has_many :comments
   before_save { self.email = email.downcase }
@@ -16,6 +16,7 @@ class User < ApplicationRecord
     unless user
       nickname = auth.extra.raw_info.name if auth.provider == 'facebook'
       nickname = auth.info.nickname if auth.provider == 'twitter'
+      nickname = auth.info.name if auth.provider == 'google_oauth2'
 
       user = User.create(
         uid:      auth.uid,
