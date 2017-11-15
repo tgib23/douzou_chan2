@@ -1,0 +1,10 @@
+
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'nearby_map'}}, function(){
+  markers = handler.addMarkers(<%=raw @nearby_hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  handler.getMap().setZoom(<%= 19 - @scale %>);
+});
+$('#nearby_posts').append("<%=j render(partial: 'show_post', collection: @nearby_posts, format: 'html') %>")
+
