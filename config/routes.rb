@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :posts, only: [ :create, :destroy, :new, :edit, :index ]
     get "posts/get_geo"
     get "posts/get_wiki"
+    get "posts/get_near_posts"
     get "posts/like_post"
     get "posts/like_pic"
     get "posts/:id", to: 'posts#show'

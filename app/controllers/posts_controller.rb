@@ -43,14 +43,6 @@ class PostsController < ApplicationController
       marker.infowindow post.name
       marker.json({title: post.name})
     end
-    @nearby_posts = nearby_posts(@post)
-    @nearby_hash= Gmaps4rails.build_markers(@nearby_posts) do |post, marker|
-      marker.lat post.latitude
-      marker.lng post.longitude
-      marker.infowindow post.name
-      marker.json({title: post.name})
-      marker.picture({url: 'http://maps.google.com/mapfiles/ms/icons/blue.png', width: 48, height: 48})
-    end
     @comments = @post.comments.paginate(page: params[:page])
     post_like_all_key = "#{@post.id}_all"
     post_like_all_value = PostLike.find_by(key: post_like_all_key).value
@@ -299,6 +291,25 @@ class PostsController < ApplicationController
       format.js
     end
   end
+
+  def get_near_posts
+    post = Post.find(params[:post_id])
+    @hash = Gmaps4rails.build_markers(post) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.name
+      marker.json({title: post.name})
+    end
+    @nearby_posts = nearby_posts(post)
+    @nearby_hash= Gmaps4rails.build_markers(@nearby_posts) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.name
+      marker.json({title: post.name})
+      marker.picture({url: 'http://maps.google.com/mapfiles/ms/icons/blue.png', width: 48, height: 48})
+    end
+  end
+
 
   def like_post
 

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <%= javascript_include_tag 'get-wiki' %>
+<%= javascript_include_tag 'get-near-posts' %>
 
 <p>
   <strong><%= t '.title' %></strong>
@@ -54,7 +55,6 @@
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
       markers = handler.addMarkers(<%=raw @hash.to_json %>);
-      markers << handler.addMarkers(<%=raw @nearby_hash.to_json %>, { fillColor: '#00ff', opacity: 0.5});
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
       handler.getMap().setZoom(18);
@@ -63,13 +63,8 @@
 
 <div id="wiki_summary">Wikipedia取得中</div>
 
-<div id="nearby_posts">
 <%= t '.nearby_posts' %>
-<% @nearby_posts.each do |np| %>
-  <p>
-  <%= link_to np.name, np %>
-  </p>
-<% end %>
+<div id="nearby_posts">
 </div>
 
 <% if user_signed_in? %>
