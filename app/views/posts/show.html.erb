@@ -51,15 +51,6 @@
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 
-<script type="text/javascript">
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%=raw @hash.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(18);
-    });
-</script>
 
 <div id="wiki_summary">Wikipedia取得中</div>
 
@@ -89,3 +80,30 @@
 <%#= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 
+<script type="text/javascript">
+    var handler;
+	var markers;
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(18);
+    });
+
+    google.maps.event.addListener(handler.getMap(), 'dragend', function() {
+      google.maps.event.addListener(handler.getMap(), 'idle', function() {
+        console.log('set idle in get_near_post test');
+        post_id = window.location.href.split("/").pop()
+        ne_lat = handler.getMap().getBounds().getNorthEast().lat();
+        ne_lng = handler.getMap().getBounds().getNorthEast().lng();
+        sw_lat = handler.getMap().getBounds().getSouthWest().lat();
+        sw_lng = handler.getMap().getBounds().getSouthWest().lng();
+        zoom   = handler.getMap().getZoom();
+        $.ajax({
+          url: "/posts/renew_bounds",
+          data: 'post_id=' + post_id + '&ne_lat=' + ne_lat + '&ne_lng=' + ne_lng + '&sw_lat=' + sw_lat + '&sw_lng=' + sw_lng + '&zoom=' + zoom
+        })
+      })
+    });
+</script>

@@ -333,7 +333,7 @@ class PostsController < ApplicationController
   def like_pic
 
     if user_signed_in? && current_user.id == params[:user_id].to_i
-	  @pic_id = params[:id]
+      @pic_id = params[:id]
       all_key = "#{params[:id]}_all"
       user_key = "#{params[:id]}_#{current_user.id}"
       @all = PicLike.find_by(key: all_key)
@@ -350,6 +350,29 @@ class PostsController < ApplicationController
     end
   end
 
+  def renew_bounds
+    post = Post.find(params[:post_id])
+    @hash = Gmaps4rails.build_markers(post) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.name
+      marker.json({title: post.name})
+    end
+    @west = params[:sw_lng]
+    @east = params[:ne_lng]
+    @north = params[:ne_lat]
+    @south = params[:sw_lat]
+    @zoom = params[:zoom]
+    @nearby_posts = Post.where("latitude>=? AND latitude<?",@south.to_f,@north.to_f).where("longitude>=? AND longitude<?",@west.to_f,@east.to_f)
+    @nearby_hash= Gmaps4rails.build_markers(@nearby_posts) do |post, marker|
+      puts "debug nearby hash in renew bounds #{post.latitude}, #{post.longitude}"
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.name
+      marker.json({title: post.name})
+      marker.picture({url: 'http://maps.google.com/mapfiles/ms/icons/blue.png', width: 48, height: 48})
+    end
+  end
 
   private
 
@@ -374,7 +397,7 @@ class PostsController < ApplicationController
     end
 
     def nearby_posts(target)
-      Post.where("latitude>=? AND latitude<?",target.latitude-0.002,target.latitude+0.002).where("longitude>=? AND longitude<?",target.longitude-0.002,target.longitude+0.002)
+      Post.where("latitude>=? AND latitude<?",target.latitude-0.002,target.latitude+0.002).where("longitude>=? AND longitude<?",target.longitude-0.002,target.longitude+0.002).where.not(id: target.id)
     end
 
     # calc point of new post algorithm
@@ -397,6 +420,7 @@ class PostsController < ApplicationController
         end
       end
     end
+
 
     # calc point of post update algorithm
     def calc_update_pt(diff)

@@ -1,0 +1,31 @@
+handler.removeMarkers(markers);
+
+handler.buildMap({ provider: {}, internal: {id: 'map'}},  function() {
+  markers = handler.addMarkers(<%=raw @nearby_hash.to_json %>, { fillColor: '#00ff', opacity: 0.5});
+  handler.bounds.extendWith(markers);
+
+  var sw = new google.maps.LatLng(<%= @south.to_f %>, <%= @west.to_f %>);
+  var ne = new google.maps.LatLng(<%= @north.to_f %>, <%= @east.to_f %>);
+  var bounds = new google.maps.LatLngBounds(sw, ne);
+  handler.getMap().fitBounds(bounds);
+  handler.getMap().setZoom(<%= @zoom.to_i %>);
+});
+
+
+  google.maps.event.addListener(handler.getMap(), 'dragend', function() {
+    google.maps.event.addListener(handler.getMap(), 'idle', function() {
+      post_id = window.location.href.split("/").pop()
+      ne_lat = handler.getMap().getBounds().getNorthEast().lat();
+      ne_lng = handler.getMap().getBounds().getNorthEast().lng();
+      sw_lat = handler.getMap().getBounds().getSouthWest().lat();
+      sw_lng = handler.getMap().getBounds().getSouthWest().lng();
+      zoom   = handler.getMap().getZoom();
+      console.log(zoom);
+      $.ajax({
+        url: "/posts/renew_bounds",
+        data: 'post_id=' + post_id + '&ne_lat=' + ne_lat + '&ne_lng=' + ne_lng + '&sw_lat=' + sw_lat + '&sw_lng=' + sw_lng + '&zoom=' + zoom
+      })
+    })
+  });
+
+$('#nearby_posts').html("<%=j render(partial: 'show_post', collection: @nearby_posts, format: 'html') %>")

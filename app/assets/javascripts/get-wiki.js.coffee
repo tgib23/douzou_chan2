@@ -1,5 +1,3 @@
-myPosition = []
- 
 $(document).ready( ->
  
     getWikiPre = ->

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "posts/get_geo"
     get "posts/get_wiki"
     get "posts/get_near_posts"
+    get "posts/renew_bounds"
     get "posts/like_post"
     get "posts/like_pic"
     get "posts/:id", to: 'posts#show'
