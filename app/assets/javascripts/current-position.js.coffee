@@ -3,13 +3,13 @@ myPosition = []
 $(document).ready( ->
  
     getCurrent = ->
-      navigator.geolocation.getCurrentPosition(
-        onSuccess,
-        onError,
-            enableHighAccuracy: true,
-             timeout: 20000,
-             maximumAge: 120000
-      )
+        navigator.geolocation.getCurrentPosition(
+            onSuccess,
+            onError,
+                enableHighAccuracy: true,
+                 timeout: 20000,
+                 maximumAge: 120000
+        )
  
     onSuccess = (position) ->
         console.log "SUCCESS!!!!!!"
@@ -22,11 +22,11 @@ $(document).ready( ->
     onError = (err) ->
         console.log "ERRRORRR"
         switch err.code
-          when 0 then message = 'Unknown error: ' + err.message
-          when 1 then message = 'You denied permission to retrieve a position.'
-          when 2 then message = 'The browser was unable to determine a position: ' + error.message
-          when 3 then message = 'The browser timed out before retrieving the position.'
-          else message = err.message
+            when 0 then message = 'Unknown error: ' + err.message
+            when 1 then message = 'You denied permission to retrieve a position.'
+            when 2 then message = 'The browser was unable to determine a position: ' + error.message
+            when 3 then message = 'The browser timed out before retrieving the position.'
+            else message = err.message
  
     postData = ->
         url_analysis = window.location.href.split("?")
